@@ -1,0 +1,36 @@
+#!/bin/bash
+
+source /home/amr/.bashrc
+
+WEBSERVER_PATH=$(dirname $0)
+
+if [ "$1" == "update" ]; then
+    if [ "$2" == "full" ]; then
+        echo Calling full update
+        ${WEBSERVER_PATH}/update full
+    else
+        ${WEBSERVER_PATH}/update
+    fi
+    ${WEBSERVER_PATH}/build
+fi
+
+cd ${WEBSERVER_PATH}
+
+SERVER_PS=$(sudo lsof -i :8080 | grep TCP | head -n 1 | awk '{print $2}')
+if [ ! -z "$SERVER_PS" ]; then
+    sudo kill -9 $SERVER_PS
+fi
+
+echo "Running DarkEye_dev"
+
+SwiftForumDB_PATH=${WEBSERVER_PATH}/Library/ForumDB
+mkdir -p ${SwiftForumDB_PATH}
+mkdir -p ${WEBSERVER_PATH}/log
+
+cp ${WEBSERVER_PATH}/log/log.txt ${WEBSERVER_PATH}/log/log$(date "+%u").txt
+
+swift run Run serve --hostname 0.0.0.0 --port 8080 > ${WEBSERVER_PATH}/log/log.txt 2>&1 &
+
+disown
+sleep 2
+cat ${WEBSERVER_PATH}/log/log.txt

@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-P4LXTJCQJC"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-P4LXTJCQJC');
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <meta charset=\"UTF-8\">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>#(title)</title>
+        <style>
+            body {
+                font-family: Helvetica;
+            }
+            #if(isMobile):
+                html, body {
+                    overflow-x: hidden;
+                }
+                table {
+                    table-layout: fixed;
+                }
+                img.avatar {
+                    border-radius: 50%;
+                    width: 50px;
+                }
+                img.replyToAvatar {
+                    border-radius: 50%;
+                    width: 40px;
+                }
+                img.postimage {
+                    border-radius: 10%;
+                    width: 275px;
+                }
+                img.replyToPostimage {
+                    border-radius: 5%;
+                    width: 190px;
+                }
+            #else:
+                img.avatar {
+                    border-radius: 50%;
+                    width: 37px;
+                }
+                img.replyToAvatar {
+                    border-radius: 50%;
+                    width: 29px;
+                }
+                img.postimage {
+                    border-radius: 5%;
+                    width: 550px;
+                }
+                img.replyToPostimage {
+                    border-radius: 5%;
+                    width: 350px;
+                }
+            #endif
+            A {
+                color: blue;
+                text-decoration: none;
+                font-size: 17px;
+            }
+            td {
+                color: #404040;
+                font-size: 20px;
+                font-weight: normal;
+            }
+            td.posts {
+                padding: 10px;
+            }
+            td.icon {
+                width: 15%;
+                text-align: center;
+            }
+            td.pages {
+                font-size: 17px;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            form.search input[type=text] {
+                padding: 10px;
+                font-size: 17px;
+                border: 1px solid grey;
+                float: left;
+                width: 80%;
+                background: #f1f1f1;
+            }
+            form.search button {
+                float: left;
+                width: 20%;
+                padding: 10px;
+                background: #2196F3;
+                color: white;
+                font-size: 17px;
+                border: 1px solid grey;
+                border-left: none;
+                cursor: pointer;
+            }
+            form.search button:hover {
+                background: #0b7dda;
+            }
+            form.search::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+            form {
+                direction: rtl;
+            }
+            input {
+                display: block;
+                direction: ltr;
+            }
+            .imageUpload>input {
+              display: none;
+            }
+            div.medium {
+                font-size: 17px;
+            }
+        </style>
+        #import("head")
+        <script type="text/javascript">
+            function pageDidLoad() {
+                #if(scrollToBottom):
+                    //window.scrollTo(0,document.body.scrollHeight);
+                    var objDiv = document.getElementById("scroll");
+                    objDiv.scrollIntoView(true);
+                #endif
+            }
+        </script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+    </head>
+    <body onload="pageDidLoad()">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <br>
+        #import("body")
+        <br>
+        <hr>
+        <div align=center>
+            <a href="/terms.htm">Terms of Service</a>&nbsp;&
+            <a href="/privacy.htm">Privacy Policy</a>
+        </div>
+        <br>
+        <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+        <script>
+        window.cookieconsent.initialise({
+          "palette": {
+            "popup": {
+              "background": "#237afc"
+            },
+            "button": {
+              "background": "#fff",
+              "text": "#237afc"
+            }
+          },
+          "theme": "classic"
+        });
+        </script>
+    </body>
+</html>

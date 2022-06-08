@@ -1,0 +1,8 @@
+import Vapor
+import DarkEyeCore
+
+func routes(_ app: Application) throws {
+    
+    try app.register(collection: DarkEyeController())
+    try app.register(collection: LoginController())
+}

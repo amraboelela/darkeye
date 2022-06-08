@@ -1,0 +1,40 @@
+#extend("base"):
+    #export("body"):
+    <table width="100%">
+        <tr>
+        <td class=icon>
+            <a href=/darkeye><img src="/darkeye-icon.png" alt="DarkEye Icon" height="80" width="80" /></a>
+        </td>
+        <td>
+            <form class="search" action="/search" style="margin:auto;max-width:400px">
+                <input type="text" placeholder="Search.." name="text">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </td>
+        <td align="center">
+        #if(userModel):
+        #(userModel.username) | <a href="/logout">Logout</a>
+        #else:
+            <a href="/login">Login</a>
+        #endif
+        </td>
+        </tr>
+    </table>
+    <table width="100%">
+    #for(link in linksModels):
+        <tr>
+        <td valign=top rowspan=2 style="border-bottom:1pt solid #aaaaaa; padding-top: 10px; padding-right: 5px;">
+        </td>
+        <td style="padding-top: 10px;">
+        </td>
+        <td align=right style="white-space:nowrap; padding-top: 10px;"></td>
+        </tr>
+        <tr>
+        <td colspan=2 style="border-bottom:1pt solid #aaaaaa; padding-bottom: 10px;">
+            #unsafeHTML(link.text)
+        </td>
+        </tr>
+    #endfor
+    </table>
+    #endexport
+#endextend

@@ -1,0 +1,9 @@
+#!/bin/bash 
+
+sudo killall swift-build
+sudo killall swift-driver
+sudo killall swift-run
+
+rm Package.resolved
+swift package clean
+sudo rm -rf .build
