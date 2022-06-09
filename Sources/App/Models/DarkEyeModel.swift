@@ -1,36 +1,32 @@
 
 import DarkEyeCore
+import NIOPosix
 import Vapor
+import VaporCommon
 
 struct DarkEyeModel: Codable {
-    //var userModel: UserModel?
+    static let linksCount = 20
+    
+    var loggedInUser: User?
     var title: String
-    var imageSize: Int
+    var isAdmin: Bool
+    var searchText: String?
+    var isMobile: Bool
     var linksModels: [LinkModel]
     
-    static func modelWith(req: Request, title: String, links: [Link]) -> DarkEyeModel {
-        let linkModels: [LinkModel] = links.compactMap { link in
-            if let text = link.text {
-                //let friendlyDateString = Date.friendlyDateStringFrom(epochTime: TimeInterval(postTime))
-                //text = message.htmlMessage
-                return LinkModel(
-                    url: link.url,
-                    title: link.title,
-                    text: text
-                )
-            }
-            return LinkModel(
-                url: link.url,
-                title: link.title,
-                text: ""
-            )
-        }
-        let imageSize = webserverUtil.imageSize(req: req)
+    static func modelWith(req: Request, title: String, searchText: String = "", links: [Link]) -> DarkEyeModel {
+        let loggedInUser = session.userAt(sessionID: req.sessionID)
         return DarkEyeModel(
-            userModel: nil,
+            loggedInUser: loggedInUser,
             title: title,
-            imageSize: imageSize,
-            postsModels: postModels
+            isAdmin: loggedInUser?.userRole == .admin,
+            searchText: searchText,
+            isMobile: req.fromMobile,
+            linksModels: LinkModel.modelsWith(links: links, loggedInUser: loggedInUser)
         )
     }
+}
+
+struct SearchModel: Codable {
+    var text: String
 }

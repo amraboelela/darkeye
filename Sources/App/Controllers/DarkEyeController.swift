@@ -4,23 +4,17 @@ import Leaf
 import DarkEyeCore
 
 struct DarkEyeController: RouteCollection {
-    let linksCount = 200
     
     func boot(routes: RoutesBuilder) throws {
-        routes.get("darkeye", use: darkEyeHandler)
-        routes.get("darkeye", ":search", use: searchHandler)
+        routes.get(use: darkEyeHandler)
+        //routes.get("avatar", ":image", use: imageHandler)
+        routes.post("search", use: searchHandler)
     }
     
     // MARK: - route Handlers
     
     func darkEyeHandler(_ req: Request) -> EventLoopFuture<View> {
-        _ = Post.newPosts
-        let links = Link.links(withSearchText: "", count: linksCount)
-        var darkEyeModel = DarkEyeModel.modelWith(req: req, title: "Dark Eye", posts: posts)
-        if let userSession = session.sessions[req.sessionID] {
-            darkEyeModel.userModel = userSession.userModel
-        }
-        return req.view.render("darkeye", darkEyeModel)
+        return mainPage(req: req)
     }
     
     func searchHandler(_ req: Request) throws -> EventLoopFuture<View> {
@@ -28,10 +22,32 @@ struct DarkEyeController: RouteCollection {
         print("searchModel: \(searchModel)")
         let searchText = searchModel.text
         let links = Link.links(withSearchText: searchText, count: DarkEyeModel.linksCount)
-        let darkeyeModel = DarkEyeModel.modelWith(req: req, title: "Dark Eye, search: \(searchText)", links: links)
-        
-        //let HaneinModel = HaneinModel.modelWith(req: req, title: "حنين ـ البحث ـ " + searchText, searchText: searchText, posts: posts)
-        return req.view.render("darkeye", DarkEyeModel)
+        let darkEyeModel = DarkEyeModel.modelWith(req: req, title: "Dark Eye search: " + searchText, searchText: searchText, links: links)
+        return req.view.render("darkeye", darkEyeModel)
+    }
+    
+    /*func closeRegistration(_ req: Request) -> EventLoopFuture<View> {
+        if session.isUserAdminAt(request: req) {
+            Registration.changeRegistration(toOpen: false)
+        }
+        return mainPage(req: req)
+    }
+    
+    func openRegistration(_ req: Request) -> EventLoopFuture<View> {
+        if session.isUserAdminAt(request: req) {
+            Registration.changeRegistration(toOpen: true)
+        }
+        return mainPage(req: req)
+    }*/
+    
+    // MARK: - Helper methods
+    
+    func mainPage(req: Request) -> EventLoopFuture<View> {
+        let links = Link.links(
+            withSearchText: "",
+            count: DarkEyeModel.linksCount
+        )
+        return req.view.render("darkeye", DarkEyeModel.modelWith(req: req, title: "Dark Eye", links: links))
     }
     
 }

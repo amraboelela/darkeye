@@ -18,26 +18,33 @@ struct LoginController: RouteCollection {
         var userModel = try req.content.decode(UserModel.self)
         print("userModel: \(userModel)")
         if userModel.username.isVacant {
-            userModel.usernameErrorMessage = "username is required"
-        } else if userModel.password?.isVacant == true {
-            userModel.passwordErrorMessage = "Password is required"
+            userModel.usernameErrorMessage = "Username required"
+        } else if userModel.password == nil || userModel.password?.isVacant == true {
+            userModel.passwordErrorMessage = "Password required"
         } else if User.usernameExists(userModel.username) {
-            let user = User.userWith(username: userModel.username)
-            if user.privateKey == userModel.privateKey {
-                
-                let sessionID = UUID().uuidString
-                session.sessions[sessionID] = UserSession(username: userModel.username)
-                let response = req.redirect(to: "/darkeye")
-                let expiryDate = Date(timeIntervalSinceNow: TimeInterval(60 * 60 * 24 * 7)) // one week
-                let cookieExpiryDate = expiryDate.cookieFormattedString
-                let cookieValue = "sessionID=\(sessionID); Expires=\(cookieExpiryDate); Path=/; SameSite=Lax"
-                response.headers.add(name: "set-cookie", value: cookieValue)
-                return req.eventLoop.makeSucceededFuture(response)
+            var user = User.userWith(username: userModel.username) ?? User.createWith(username: userModel.username)
+            if user.password == userModel.password?.base64() {
+                if user.userStatus == .suspended {
+                    userModel.errorMessage = "This account has been suspended"
+                } else {
+                    let sessionID = UUID().uuidString
+                    session.sessions[sessionID] = userModel.username
+                    let response = req.redirect(to: "/")
+                    let expiryDate = Date(timeIntervalSinceNow: TimeInterval(60 * 60 * 24 * 7)) // one week
+                    let cookieExpiryDate = expiryDate.cookieFormattedString
+                    let cookieValue = "sessionID=\(sessionID); Expires=\(cookieExpiryDate); Path=/; SameSite=Lax"
+                    response.headers.add(name: "set-cookie", value: cookieValue)
+                    
+                    user.timeLoggedin = Date.secondsSinceReferenceDate
+                    database[User.prefix + user.username] = user
+                    
+                    return req.eventLoop.makeSucceededFuture(response)
+                }
             } else {
-                userModel.errorMessage = "username or private key error."
+                userModel.errorMessage = "Username or password error"
             }
         } else {
-            userModel.errorMessage = "username or private key error."
+            userModel.errorMessage = "Username or password error"
         }
         return req.view.render("login", userModel).flatMap { view in
             return view.encodeResponse(for: req).flatMap { response in

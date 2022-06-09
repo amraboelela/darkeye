@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Updating HaneinWebserver_dev"
+echo "Updating DarkEye_dev"
 
 git pull
 git commit -a -m "Update from server"

@@ -8,7 +8,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
-        .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0"),
+        .package(url: "https://github.com/amraboelela/VaporCommon.git", .branch("main")),
         .package(url: "https://github.com/amraboelela/DarkEyeCore.git", .branch("main")),
     ],
     
@@ -16,10 +16,8 @@ let package = Package(
         .target(
             name: "App",
             dependencies: [
-                .product(name: "Leaf", package: "leaf"),
-                .product(name: "Vapor", package: "vapor"),
+                .product(name: "VaporCommon", package: "VaporCommon"),
                 .product(name: "DarkEyeCore", package: "DarkEyeCore"),
-                //.product(name: "SwiftForum", package: "SwiftForum"),
             ],
             swiftSettings: [
                 // Enable better optimizations when building in Release configuration. Despite the use of
