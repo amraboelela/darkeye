@@ -134,7 +134,6 @@
                 #endif
             }
         </script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
     </head>
     <body onload="pageDidLoad()">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -147,20 +146,5 @@
             <a href="/privacy.htm">Privacy Policy</a>
         </div>
         <br>
-        <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-        <script>
-        window.cookieconsent.initialise({
-          "palette": {
-            "popup": {
-              "background": "#237afc"
-            },
-            "button": {
-              "background": "#fff",
-              "text": "#237afc"
-            }
-          },
-          "theme": "classic"
-        });
-        </script>
     </body>
 </html>

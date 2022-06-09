@@ -3,7 +3,8 @@
     <table width="100%">
         <tr>
         <td class=icon>
-            <a href=/darkeye><img src="/darkeye-icon.png" alt="DarkEye Icon" height="80" width="80" /></a>
+            <a href=/><img src="/images/hanein-icon.png" alt="Hanein Icon" width="80" height="50" /></a>
+            <a href=/darkeye><img src="/images/darkeye-icon.png" alt="DarkEye Icon" width="80" height="50" /></a>
         </td>
         <td>
             <form class="search" action="/search" style="margin:auto;max-width:400px">
