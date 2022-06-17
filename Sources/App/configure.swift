@@ -19,7 +19,7 @@ public func configure(_ app: Application) throws {
     app.views.use(.leaf)
     
     database = Database(parentPath: app.directory.workingDirectory + "Library", name: "Database")
-    Link.crawl()
+    crawler.start()
     
     // register routes
     try routes(app)

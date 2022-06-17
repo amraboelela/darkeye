@@ -12,9 +12,9 @@ struct DarkEyeModel: Codable {
     var isAdmin: Bool
     var searchText: String?
     var isMobile: Bool
-    var linksModels: [LinkModel]
+    var wordLinksModels: [WordLinkModel]
     
-    static func modelWith(req: Request, title: String, searchText: String = "", links: [Link]) -> DarkEyeModel {
+    static func modelWith(req: Request, title: String, searchText: String = "", wordLinks: [WordLink]) -> DarkEyeModel {
         let loggedInUser = session.userAt(sessionID: req.sessionID)
         return DarkEyeModel(
             loggedInUser: loggedInUser,
@@ -22,11 +22,7 @@ struct DarkEyeModel: Codable {
             isAdmin: loggedInUser?.userRole == .admin,
             searchText: searchText,
             isMobile: req.fromMobile,
-            linksModels: LinkModel.modelsWith(links: links, loggedInUser: loggedInUser)
+            wordLinksModels: WordLinkModel.modelsWith(wordLinks: wordLinks, loggedInUser: loggedInUser)
         )
     }
-}
-
-struct SearchModel: Codable {
-    var text: String
 }

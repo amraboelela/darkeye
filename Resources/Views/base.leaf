@@ -67,7 +67,7 @@
             }
             td {
                 color: #404040;
-                font-size: 20px;
+                font-size: 17px;
                 font-weight: normal;
             }
             td.posts {
