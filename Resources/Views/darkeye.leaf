@@ -21,22 +21,21 @@
         </td>
         </tr>
     </table>
-    <table width="100%">
+    <br><br>
+    <table>
     #for(wordLink in wordLinksModels):
         <tr>
-        <td valign=top rowspan=2 style="border-bottom:1pt solid #aaaaaa; padding-top: 10px; padding-right: 5px;">
-        </td>
-        <td style="padding-top: 10px;">
-        </td>
-        <td align=right style="white-space:nowrap; padding-top: 10px;"></td>
-        </tr>
-        <tr>
-        <td colspan=2 style="border-bottom:1pt solid #aaaaaa; padding-bottom: 10px;">
-            <a href=#(wordLink.url)>#(wordLink.url)</a>
+        <td style="font-size: 12px;padding-left: 20px;">
+            #(wordLink.url)
         </td>
         </tr>
         <tr>
-        <td colspan=2 style="border-bottom:1pt solid #aaaaaa; padding-bottom: 10px;">
+        <td style="font-size: 17px;padding-left: 20px;">
+            <a href=#(wordLink.url)>#(wordLink.title)</a>
+        </td>
+        </tr>
+        <tr>
+        <td style="padding-bottom: 25px;padding-left: 20px;">
             #(wordLink.text)
         </td>
         </tr>
