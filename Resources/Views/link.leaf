@@ -1,0 +1,52 @@
+
+<table width=100%>
+    <tr>
+    <td style="padding-left:10px;">
+        <a href=/><img src="/images/hanein-icon.png" alt="Hanein Icon" width="80" height="50" /></a>
+        <a href=/darkeye><img src="/images/darkeye-icon.png" alt="DarkEye Icon" width="80" height="50" /></a>
+    </td>
+    <td>
+    </td>
+    <td align=left>
+    #if(loggedInUser):
+        #(userFullname)
+        #if(nonReadMessages):
+            | <a href="/darkeye/messages" style="color:red;">New Message</a>
+        #elseif(messages):
+            | <a href="/darkeye/messages">Messages</a>
+        #endif
+        | <a href="/darkeye/logout">Logout</a>
+    #else:
+        #if(isRegistrationOpen):
+        <a href="/darkeye/register">Register</a> |
+        #endif
+        <a href="/darkeye/login">Login</a>
+    #endif
+    </td>
+    </tr>
+</table>
+<div align=center>
+#if(url):
+    #if(moderatorOrAdmin):
+        #if(blocked):
+        <a href="/darkeye/unblock/#(hash)">Unblock</a>
+        #else:
+        <a href="/darkeye/block/#(hash)">Block</a>
+        #endif
+    #else:
+        <a href="/darkeye/report/#(hash)">Report</a>
+    #endif
+    &nbsp;&nbsp;<a href=#(url)>#(url)</a>
+    <br><br>
+    <hr>
+#else:
+    <h2>Page not found</h3>
+#endif
+</div>
+#if(blocked):
+    <h2 align=center>This page is blocked</h3>
+#else:
+    #if(html):
+        #unsafeHTML(html)
+    #endif
+#endif

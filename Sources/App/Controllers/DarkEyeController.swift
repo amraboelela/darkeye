@@ -6,9 +6,7 @@ import DarkEyeCore
 struct DarkEyeController: RouteCollection {
     
     func boot(routes: RoutesBuilder) throws {
-        //routes.get(use: darkEyeHandler)
         routes.get("darkeye", use: darkEyeHandler)
-        //routes.get("darkeye", "u", ":username", use: userHandler)
         routes.get("darkeye", ":search", use: searchHandler)
     }
     

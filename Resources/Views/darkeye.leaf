@@ -31,7 +31,7 @@
         </tr>
         <tr>
         <td style="font-size: 17px;padding-left: 20px;">
-            <a href=#(wordLink.url)>#(wordLink.title)</a>
+            <a href="/darkeye/v/#(wordLink.hash)">#(wordLink.title)</a>
         </td>
         </tr>
         <tr>

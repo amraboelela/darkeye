@@ -5,36 +5,30 @@ import DarkEyeCore
 struct LinkModel: Codable {
     var url: String
     var title: String
+    var html: String
+    var numberOfReports: Int
+    var blocked: Bool?
     
     static func from(link: Link) -> LinkModel {
-        /*let user = User.userWith(username: post.username) ?? User.createWith(username: post.username)
-        var hasImage = false
-        let postImageFile = application.directory.publicDirectory + "postimages/\(post.time)-" + user.username + ".png"
-        if FileManager.default.fileExists(atPath: postImageFile) {
-            hasImage = true
+        var theLink = link
+        theLink.saveChildrenIfNeeded()
+        theLink.loadHTML()
+        var linkHtml = theLink.html ?? ""
+        for (rawURL, refinedURL) in theLink.urls {
+            print("rawURL: \(rawURL)")
+            print("refinedURL: \(refinedURL)")
+            let hash = refinedURL.hashBase32(numberOfDigits: 12)
+            print("refinedURL hash: \(hash)")
+            linkHtml = linkHtml.replacingOccurrences(of: "href=\"" + rawURL + "\"", with: "href=\"/darkeye/v/" + hash + "\"")
         }
-        var replyToPostModel: ReplyToPostModel?
-        if let replyToPostKey = post.replyTo, let replyToPost = Post.postWith(key: replyToPostKey) {
-            replyToPostModel = ReplyToPostModel.from(post: replyToPost)
-        }*/
-        return LinkModel(url: link.url, title: link.title ?? "")
+        return LinkModel(url: theLink.url, title: theLink.title, html: linkHtml, numberOfReports: theLink.numberOfReports, blocked: theLink.blocked)
     }
     
     static func modelsWith(links: [Link], loggedInUser: User?) -> [LinkModel] {
         return links.compactMap { link in
             var linkModel = from(link: link)
-            //var message = post.message
-            /*if isHtmlMessage == true {
-                message = message.htmlMessage
-            }*/
-            //postModel.message = message
-            /*var replyToPostModel: ReplyToPostModel?
-            if let replyToPostKey = post.replyTo, let replyToPost = Post.postWith(key: replyToPostKey) {
-                replyToPostModel = ReplyToPostModel.from(post: replyToPost)
-            }
-            postModel.replyTo = replyToPostModel
-            postModel.canDelete = loggedInUser?.username == post.username || loggedInUser?.moderatorOrAdmin == true*/
             return linkModel
         }
     }
+
 }
