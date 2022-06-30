@@ -1,3 +1,4 @@
 #!/bin/bash
 
-swift build -Xswiftc -DDEBUG 2<&1 | tee || exit
+swift build -Xswiftc 2<&1 | tee || exit
+
