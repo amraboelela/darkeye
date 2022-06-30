@@ -21,7 +21,7 @@ if [ ! -z "$SERVER_PS" ]; then
     sudo kill -9 $SERVER_PS
 fi
 
-echo "Running DarkEye_dev"
+echo "Running DarkEye"
 
 Database_PATH=${WEBSERVER_PATH}/Library/Database
 mkdir -p ${Database_PATH}
