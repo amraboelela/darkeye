@@ -1,4 +1,4 @@
 #!/bin/bash
 
-swift build -Xswiftc 2<&1 | tee || exit
+swift build 2<&1 | tee || exit
 
