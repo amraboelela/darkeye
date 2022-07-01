@@ -20,6 +20,7 @@ public func configure(_ app: Application) throws {
     
     database = Database(parentPath: app.directory.workingDirectory + "Library", name: "Database")
     Link.workingDirectory = app.directory.workingDirectory
+    print("Starting the crawler")
     crawler.start()
     
     // register routes
