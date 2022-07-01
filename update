@@ -3,16 +3,15 @@
 echo "Updating DarkEye"
 
 git pull
-git commit -a -m "Update from server"
-git push
 git checkout main
 git pull
 git checkout release
-git merge master --no-edit
+git merge main --no-edit
+git commit -a -m "Update from server"
 git push
 if [ "$1" == "all" ]; then
     echo
     echo "Updating all packages by running swift package update"
     swift package update
 fi
- 
+
