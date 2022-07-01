@@ -4,16 +4,6 @@ source /home/amr/.bashrc
 
 WEBSERVER_PATH=$(dirname $0)
 
-#if [ "$1" == "update" ]; then
-#    if [ "$2" == "full" ]; then
-#        echo Calling full update
-#        ${WEBSERVER_PATH}/update full
-#    else
-#        ${WEBSERVER_PATH}/update
-#    fi
-#    ${WEBSERVER_PATH}/build
-#fi
-
 cd ${WEBSERVER_PATH}
 
 SERVER_PS=$(sudo lsof -i :9001 | grep TCP | head -n 1 | awk '{print $2}')
