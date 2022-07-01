@@ -14,4 +14,3 @@ if [ "$1" == "all" ]; then
     echo "Updating all packages by running swift package update"
     swift package update
 fi
-

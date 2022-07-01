@@ -1,1 +1,7 @@
-sudo lsof -i :8091 | grep TCP | awk '{print $2}' | xargs -I{} kill {}
+#!/bin/bash
+
+if [[ $OSTYPE == 'darwin'* ]]; then
+    sudo lsof -i :8080 | grep TCP | awk '{print $2}' | xargs -I{} kill {}
+else
+    sudo lsof -i :8091 | grep TCP | awk '{print $2}' | xargs -I{} kill {}
+fi
