@@ -4,6 +4,8 @@ source /home/amr/.bashrc
 
 WEBSERVER_PATH=$(dirname $0)
 
+./update all
+
 cd ${WEBSERVER_PATH}
 
 SERVER_PS=$(sudo lsof -i :8091 | grep TCP | head -n 1 | awk '{print $2}')
@@ -22,5 +24,5 @@ cp ${WEBSERVER_PATH}/log/log.txt ${WEBSERVER_PATH}/log/log$(date "+%u").txt
 swift run Run serve --hostname 0.0.0.0 --port 8091 > ${WEBSERVER_PATH}/log/log.txt 2>&1 &
 
 disown
-sleep 10
+sleep 3
 cat ${WEBSERVER_PATH}/log/log.txt
