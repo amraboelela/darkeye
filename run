@@ -4,23 +4,11 @@ source /home/amr/.bashrc
 
 WEBSERVER_PATH=$(dirname $0)
 
-./update all
+#./update all
 
 cd ${WEBSERVER_PATH}
 
-<<<<<<< HEAD
-SERVER_PS=$(sudo lsof -i :9001 | grep TCP | head -n 1 | awk '{print $2}')
-if [ ! -z "$SERVER_PS" ]; then
-    sudo kill -9 $SERVER_PS
-fi
-=======
 ./stop
-
-#SERVER_PS=$(sudo lsof -i :8091 | grep TCP | head -n 1 | awk '{print $2}')
-#if [ ! -z "$SERVER_PS" ]; then
-#    sudo kill -9 $SERVER_PS
-#fi
->>>>>>> main
 
 echo "Running DarkEye"
 

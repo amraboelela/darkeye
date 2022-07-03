@@ -3,6 +3,10 @@
 echo "Updating DarkEye"
 
 git pull
+git checkout main
+git pull
+git checkout release
+git merge main --no-edit
 git commit -a -m "Update from server"
 git push
 if [ "$1" == "all" ]; then
