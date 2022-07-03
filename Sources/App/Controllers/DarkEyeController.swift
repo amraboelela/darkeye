@@ -7,6 +7,7 @@ struct DarkEyeController: RouteCollection {
     
     func boot(routes: RoutesBuilder) throws {
         routes.get("darkeye", use: darkEyeHandler)
+        routes.get("darkeye", "stop", use: stopHandler)
         routes.get("darkeye", ":search", use: searchHandler)
     }
     
@@ -28,13 +29,14 @@ struct DarkEyeController: RouteCollection {
         return req.view.render("darkeye", darkEyeModel)
     }
     
+    func stopHandler(_ req: Request) -> EventLoopFuture<View> {
+        appController.exitTheApp()
+        return req.view.render("stop")
+    }
+    
     // MARK: - Helper methods
     
     func mainPage(req: Request) -> EventLoopFuture<View> {
-        /*let links = Link.links(
-            withSearchText: "",
-            count: DarkEyeModel.linksCount
-        )*/
         return req.view.render("darkeye", DarkEyeModel.modelWith(req: req, title: "Dark Eye", wordLinks: [WordLink]()))
     }
     
