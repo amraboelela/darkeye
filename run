@@ -4,12 +4,23 @@ source /home/amr/.bashrc
 
 WEBSERVER_PATH=$(dirname $0)
 
+./update all
+
 cd ${WEBSERVER_PATH}
 
+<<<<<<< HEAD
 SERVER_PS=$(sudo lsof -i :9001 | grep TCP | head -n 1 | awk '{print $2}')
 if [ ! -z "$SERVER_PS" ]; then
     sudo kill -9 $SERVER_PS
 fi
+=======
+./stop
+
+#SERVER_PS=$(sudo lsof -i :8091 | grep TCP | head -n 1 | awk '{print $2}')
+#if [ ! -z "$SERVER_PS" ]; then
+#    sudo kill -9 $SERVER_PS
+#fi
+>>>>>>> main
 
 echo "Running DarkEye"
 
@@ -22,5 +33,5 @@ cp ${WEBSERVER_PATH}/log/log.txt ${WEBSERVER_PATH}/log/log$(date "+%u").txt
 swift run Run serve --hostname 0.0.0.0 --port 9001 > ${WEBSERVER_PATH}/log/log.txt 2>&1 &
 
 disown
-sleep 2
+sleep 3
 cat ${WEBSERVER_PATH}/log/log.txt
