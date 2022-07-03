@@ -1,7 +1,9 @@
 #!/bin/bash
 
+echo "Stopping DarkEye_dev"
+
 if [[ $OSTYPE == 'darwin'* ]]; then
     sudo lsof -i :8080 | grep TCP | awk '{print $2}' | xargs -I{} kill {}
 else
-    sudo lsof -i :8091 | grep TCP | awk '{print $2}' | xargs -I{} kill {}
+    sudo lsof -i :8091 | grep TCP | awk '{print $2}' | xargs -I{} kill -9 {}
 fi
