@@ -10,11 +10,6 @@ cd ${WEBSERVER_PATH}
 
 ./stop
 
-#SERVER_PS=$(sudo lsof -i :8091 | grep TCP | head -n 1 | awk '{print $2}')
-#if [ ! -z "$SERVER_PS" ]; then
-#    sudo kill -9 $SERVER_PS
-#fi
-
 echo "Running DarkEye_dev"
 
 Database_PATH=${WEBSERVER_PATH}/Library/Database
