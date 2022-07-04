@@ -22,7 +22,7 @@
         </tr>
     </table>
     <br><br>
-    <table>
+    <table width="100%">
     #for(wordLink in wordLinksModels):
         <tr>
         <td style="font-size: 12px;padding-left: 20px;">
