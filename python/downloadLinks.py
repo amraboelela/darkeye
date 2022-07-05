@@ -15,4 +15,5 @@ while True:
         subprocess.call(["torsocks", "wget", "-O", tempFileURL, link])
         subprocess.call(["cp", tempFileURL, linkFileParts[0] + ".html"])
         subprocess.call(["rm", tempFileURL])
+        subprocess.call(["rm", linkFile])
     time.sleep(60)
