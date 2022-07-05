@@ -2,6 +2,7 @@
 
 echo "Calling stop to DarkEye_dev"
 
+rm stop.*
 if [[ $OSTYPE == 'darwin'* ]]; then
     curl http://127.0.0.1:8080/darkeye/stop
 else
