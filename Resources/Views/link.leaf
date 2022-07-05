@@ -2,12 +2,12 @@
 <table width=100%>
     <tr>
     <td style="padding-left:10px;">
-        <a href=/><img src="/images/hanein-icon.png" alt="Hanein Icon" width="80" height="50" /></a>
+        <a href="https://hanein.news"><img src="/images/hanein-icon.png" alt="Hanein Icon" width="80" height="50" /></a>
         <a href=/darkeye><img src="/images/darkeye-icon.png" alt="DarkEye Icon" width="80" height="50" /></a>
     </td>
     <td>
     </td>
-    <td align=left>
+    <td align=left style='font-size: 17px;'>
     #if(loggedInUser):
         #(userFullname)
         #if(nonReadMessages):
@@ -25,7 +25,7 @@
     </td>
     </tr>
 </table>
-<div align=center>
+<div align=center style='font-size: 17px;'>
 #if(url):
     #if(moderatorOrAdmin):
         #if(blocked):
