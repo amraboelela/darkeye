@@ -4,13 +4,10 @@ source /home/amr/.bashrc
 
 WEBSERVER_PATH=$(dirname $0)
 
-./callStop
+./stop
 ./update all
 
 cd ${WEBSERVER_PATH}
-
-sleep 5
-./stop
 
 echo "Running DarkEye_dev"
 

@@ -2,6 +2,15 @@
 
 echo "Stopping DarkEye_dev"
 
+rm stop.*
+if [[ $OSTYPE == 'darwin'* ]]; then
+    curl http://127.0.0.1:8080/darkeye/stop
+else
+    wget http://127.0.0.1:8091/darkeye/stop
+fi
+
+sleep 60
+
 if [[ $OSTYPE == 'darwin'* ]]; then
     sudo lsof -i :8080 | grep TCP | awk '{print $2}' | xargs -I{} kill -9 {}
     #curl http://127.0.0.1:8080/darkeye/stop
