@@ -7,15 +7,12 @@ while True:
     linkFiles = glob.glob("../cache/*.link")
     for linkFile in linkFiles:
         print(linkFile)
-        linkFilePathParts = linkFile.split("/")
-        linkFileParts = linkFilePathParts[-1].split(".")
-        print("linkFileParts: " + str(linkFileParts))
         file = open(linkFile)
         link = file.read()
         print(link)
-        tempFileURL = linkFileParts[0] + "-temp.html"
+        tempFileURL = linkFile.replace('.link','-temp.html') #linkFileParts[0] + "-temp.html"
         subprocess.call(["torsocks", "wget", "-O", tempFileURL, link])
-        subprocess.call(["cp", tempFileURL, linkFileParts[0] + ".html"])
+        subprocess.call(["cp", tempFileURL, linkFile.replace('.link','.html')])
         subprocess.call(["rm", tempFileURL])
         subprocess.call(["rm", linkFile])
     time.sleep(60)
