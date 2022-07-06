@@ -7,7 +7,9 @@ while True:
     linkFiles = glob.glob("../cache/*.link")
     for linkFile in linkFiles:
         print(linkFile)
-        linkFileParts = linkFile.split(".")
+        linkFilePathParts = linkFile.split("/")
+        linkFileParts = linkFilePathParts[-1].split(".")
+        print("linkFileParts: " + linkFileParts)
         file = open(linkFile)
         link = file.read()
         print(link)
