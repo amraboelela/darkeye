@@ -8,4 +8,5 @@ if [[ $OSTYPE == 'darwin'* ]]; then
 else
     #wget http://127.0.0.1:8091/darkeye/stop
     sudo lsof -i :8091 | grep TCP | awk '{print $2}' | xargs -I{} kill -9 {}
+    ps aux | grep downloadLinks.py | awk '{print $2}' | xargs -I{} kill -9 {}
 fi
