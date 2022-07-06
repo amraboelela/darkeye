@@ -19,7 +19,8 @@ cp ${WEBSERVER_PATH}/log/log.txt ${WEBSERVER_PATH}/log/log$(date "+%u").txt
 
 swift run Run serve --hostname 0.0.0.0 --port 8091 > ${WEBSERVER_PATH}/log/log.txt 2>&1 &
 cd ${WEBSERVER_PATH}/python
-python downloadLinks.py > ${WEBSERVER_PATH}/log/plog.txt 2>&1 &
+rm wget-log.*
+python downloadLinks.py 2>&1 &
 
 disown
 sleep 3
