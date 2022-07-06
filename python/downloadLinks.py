@@ -9,7 +9,7 @@ while True:
         print(linkFile)
         linkFilePathParts = linkFile.split("/")
         linkFileParts = linkFilePathParts[-1].split(".")
-        print("linkFileParts: " + linkFileParts)
+        print("linkFileParts: " + str(linkFileParts))
         file = open(linkFile)
         link = file.read()
         print(link)
