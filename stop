@@ -9,7 +9,7 @@ else
     wget http://127.0.0.1:8091/darkeye/stop
 fi
 
-sleep 60
+sleep 30
 
 if [[ $OSTYPE == 'darwin'* ]]; then
     sudo lsof -i :8080 | grep TCP | awk '{print $2}' | xargs -I{} kill -9 {}

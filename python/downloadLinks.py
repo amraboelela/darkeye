@@ -10,7 +10,7 @@ while True:
         file = open(linkFile)
         link = file.read()
         print(link)
-        tempFileURL = linkFile.replace('.link','-temp.html') #linkFileParts[0] + "-temp.html"
+        tempFileURL = linkFile.replace('.link','-temp.html')
         subprocess.call(["torsocks", "wget", "-O", tempFileURL, link])
         subprocess.call(["cp", tempFileURL, linkFile.replace('.link','.html')])
         subprocess.call(["rm", tempFileURL])
