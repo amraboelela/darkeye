@@ -4,6 +4,7 @@ source /home/amr/.bashrc
 
 WEBSERVER_PATH=$(dirname $0)
 
+<<<<<<< HEAD
 #./update all
 
 cd ${WEBSERVER_PATH}
@@ -11,6 +12,14 @@ cd ${WEBSERVER_PATH}
 ./stop
 
 echo "Running DarkEye"
+=======
+./stop
+./update all
+
+cd ${WEBSERVER_PATH}
+
+echo "Running DarkEye_dev"
+>>>>>>> main
 
 Database_PATH=${WEBSERVER_PATH}/Library/Database
 mkdir -p ${Database_PATH}
@@ -18,7 +27,14 @@ mkdir -p ${WEBSERVER_PATH}/log
 
 cp ${WEBSERVER_PATH}/log/log.txt ${WEBSERVER_PATH}/log/log$(date "+%u").txt
 
+<<<<<<< HEAD
 swift run Run serve --hostname 0.0.0.0 --port 9001 > ${WEBSERVER_PATH}/log/log.txt 2>&1 &
+=======
+swift run Run serve --hostname 0.0.0.0 --port 8091 > ${WEBSERVER_PATH}/log/log.txt 2>&1 &
+cd ${WEBSERVER_PATH}/python
+rm wget-log.*
+python downloadLinks.py > log.txt 2>&1 &
+>>>>>>> main
 
 disown
 sleep 3

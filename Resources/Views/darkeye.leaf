@@ -4,7 +4,7 @@
         <tr>
         <td class=icon>
             <a href=/><img src="/images/hanein-icon.png" alt="Hanein Icon" width="80" height="50" /></a>
-            <a href=/darkeye><img src="/darkeye/images/darkeye-icon.png" alt="DarkEye Icon" width="80" height="50" /></a>
+            <a href=/darkeye><img src="/images/darkeye-icon.png" alt="DarkEye Icon" width="80" height="50" /></a>
         </td>
         <td>
             <form class="search" action="/darkeye/search" style="margin:auto;max-width:400px" >
@@ -22,7 +22,7 @@
         </tr>
     </table>
     <br><br>
-    <table>
+    <table width="100%">
     #for(wordLink in wordLinksModels):
         <tr>
         <td style="font-size: 12px;padding-left: 20px;">
