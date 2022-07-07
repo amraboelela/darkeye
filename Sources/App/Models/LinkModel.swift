@@ -15,10 +15,10 @@ struct LinkModel: Codable {
         theLink.loadHTML()
         var linkHtml = theLink.html ?? ""
         for (rawURL, refinedURL) in theLink.urls {
-            print("rawURL: \(rawURL)")
-            print("refinedURL: \(refinedURL)")
+            //print("rawURL: \(rawURL)")
+            //print("refinedURL: \(refinedURL)")
             let hash = refinedURL.hashBase32(numberOfDigits: 12)
-            print("refinedURL hash: \(hash)")
+            //print("refinedURL hash: \(hash)")
             linkHtml = linkHtml.replacingOccurrences(of: "href=\"" + rawURL + "\"", with: "href=\"/darkeye/v/" + hash + "\"")
         }
         return LinkModel(url: theLink.url, title: theLink.title, html: linkHtml, numberOfReports: theLink.numberOfReports, blocked: theLink.blocked)
