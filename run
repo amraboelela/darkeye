@@ -4,11 +4,10 @@ source /home/amr/.bashrc
 
 WEBSERVER_PATH=$(dirname $0)
 
-#./update all
+./stop
+./update all
 
 cd ${WEBSERVER_PATH}
-
-./stop
 
 echo "Running DarkEye"
 
