@@ -78,5 +78,5 @@ listwalletusers.txt
 *.pem
 
 Library
-log
+log*.txt
 wget-log
