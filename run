@@ -11,7 +11,7 @@ cd ${WEBSERVER_PATH}
 
 echo "Running DarkEye"
 
-rm -rf Library/Database
+#rm -rf Library/Database
 
 Database_PATH=${WEBSERVER_PATH}/Library/Database
 mkdir -p ${Database_PATH}
