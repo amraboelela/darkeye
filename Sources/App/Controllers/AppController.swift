@@ -13,6 +13,6 @@ class AppController: CrawlerDelegate {
     }
 
     func exitTheApp() {
-        crawler.stop()
+        //crawler.stop()
     }
 }
