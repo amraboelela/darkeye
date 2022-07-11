@@ -22,7 +22,7 @@ public func configure(_ app: Application) throws {
     Link.workingDirectory = app.directory.workingDirectory
     //print("Starting the crawler")
     crawler.delegate = appController
-    //crawler.start()
+    crawler.start()
     
     // register routes
     try routes(app)
