@@ -15,12 +15,14 @@ struct LinkController: RouteCollection {
     // MARK: - route Handlers
     
     func linkHandler(_ req: Request) -> EventLoopFuture<View> {
-        crawler.stop()
+        appController.stopTheApp()
+        defer {
+            crawler.start(after: 1)
+        }
         let hash = req.parameters.get("hash") ?? ""
         if let link = HashLink.linkWith(hash: hash) {
             return req.view.render("link", LinkModel.from(link: link))
         }
-        crawler.start(after: 1)
         return req.view.render("link")
     }
     
