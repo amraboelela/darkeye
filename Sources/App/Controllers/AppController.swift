@@ -1,6 +1,4 @@
 
-//import Vapor
-//import Leaf
 import DarkEyeCore
 import Foundation
 
@@ -13,6 +11,17 @@ class AppController: CrawlerDelegate {
     }
 
     func exitTheApp() {
+        crawler.delegate = self
         crawler.stop()
+    }
+    
+    func stopTheApp() {
+        crawler.delegate = nil
+        crawler.stop()
+    }
+    
+    func startTheApp() {
+        crawler.delegate = nil
+        crawler.start()
     }
 }
