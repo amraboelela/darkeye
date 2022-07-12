@@ -7,8 +7,10 @@ struct DarkEyeController: RouteCollection {
     
     func boot(routes: RoutesBuilder) throws {
         routes.get("darkeye", use: darkEyeHandler)
-        routes.get("darkeye", "stop", use: stopHandler)
         routes.get("darkeye", ":search", use: searchHandler)
+        routes.get("darkeye", "stop", use: stopHandler)
+        routes.get("darkeye", "start", use: startHandler)
+        routes.get("darkeye", "exit", use: exitHandler)
     }
     
     // MARK: - route Handlers
@@ -34,8 +36,17 @@ struct DarkEyeController: RouteCollection {
     }
     
     func stopHandler(_ req: Request) -> EventLoopFuture<View> {
-        appController.exitTheApp()
+        appController.stopTheApp()
         return req.view.render("stop")
     }
     
+    func startHandler(_ req: Request) -> EventLoopFuture<View> {
+        appController.startTheApp()
+        return req.view.render("start")
+    }
+    
+    func exitHandler(_ req: Request) -> EventLoopFuture<View> {
+        appController.exitTheApp()
+        return req.view.render("exit")
+    }
 }
