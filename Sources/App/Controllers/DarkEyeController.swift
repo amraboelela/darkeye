@@ -24,10 +24,10 @@ struct DarkEyeController: RouteCollection {
     }
     
     func searchHandler(_ req: Request) throws -> EventLoopFuture<View> {
-        appController.stopTheApp()
+        /*appController.stopTheApp()
         defer {
             crawler.start(after: 1)
-        }
+        }*/
         let command = req.parameters.get("search") ?? ""
         if command != "search" {
             print("command != search")
