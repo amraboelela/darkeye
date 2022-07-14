@@ -16,18 +16,10 @@ struct DarkEyeController: RouteCollection {
     // MARK: - route Handlers
     
     func darkEyeHandler(_ req: Request) -> EventLoopFuture<View> {
-        appController.stopTheApp()
-        defer {
-            crawler.start(after: 1)
-        }
         return req.view.render("darkeye", DarkEyeModel.modelWith(req: req, title: "Dark Eye", wordLinks: [WordLink]()))
     }
     
     func searchHandler(_ req: Request) throws -> EventLoopFuture<View> {
-        /*appController.stopTheApp()
-        defer {
-            crawler.start(after: 1)
-        }*/
         let command = req.parameters.get("search") ?? ""
         if command != "search" {
             print("command != search")
