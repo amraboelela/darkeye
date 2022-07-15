@@ -30,4 +30,4 @@ python downloadLinks.py > log.txt 2>&1 &
 disown
 sleep 10
 cd ${WEBSERVER_PATH}
-cat ${WEBSERVER_PATH}/log/log.txt
+cat log/log.txt
