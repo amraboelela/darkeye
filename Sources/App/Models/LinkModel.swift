@@ -12,11 +12,9 @@ struct LinkModel: Codable {
     static func from(link: Link) -> LinkModel {
         var theLink = link
         theLink.saveChildrenIfNeeded()
-        theLink.loadHTML()
         var linkHtml = theLink.html ?? ""
         for (rawURL, refinedURL) in theLink.urls {
             //print("rawURL: \(rawURL)")
-            //print("refinedURL: \(refinedURL)")
             let hash = refinedURL.hashBase32(numberOfDigits: 12)
             //print("refinedURL hash: \(hash)")
             linkHtml = linkHtml.replacingOccurrences(of: "href=\"" + rawURL + "\"", with: "href=\"/darkeye/v/" + hash + "\"")
