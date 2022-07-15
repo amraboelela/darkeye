@@ -18,15 +18,15 @@ mkdir -p ${Database_PATH}
 mkdir -p ${WEBSERVER_PATH}/log
 
 cp ${WEBSERVER_PATH}/log/log.txt ${WEBSERVER_PATH}/log/log$(date "+%u").txt
-#cp ${WEBSERVER_PATH}/python/log.txt ${WEBSERVER_PATH}/python/log$(date "+%u").txt
+cp ${WEBSERVER_PATH}/python/log.txt ${WEBSERVER_PATH}/python/log$(date "+%u").txt
 
 swift run Run serve --hostname 0.0.0.0 --port 9001 > ${WEBSERVER_PATH}/log/log.txt 2>&1 &
 disown
 
-#cd ${WEBSERVER_PATH}/python
-#rm wget-log.*
-#python downloadLinks.py > log.txt 2>&1 &
+cd ${WEBSERVER_PATH}/python
+rm wget-log.*
+python downloadLinks.py > log.txt 2>&1 &
 
-#disown
+disown
 sleep 3
 cat ${WEBSERVER_PATH}/log/log.txt
