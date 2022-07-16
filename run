@@ -4,8 +4,8 @@ source /home/amr/.bashrc
 
 WEBSERVER_PATH=$(dirname $0)
 
-./stop
-./update all
+#./stop
+#./update all
 
 cd ${WEBSERVER_PATH}
 
