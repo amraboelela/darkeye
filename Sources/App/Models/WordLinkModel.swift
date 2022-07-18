@@ -10,7 +10,7 @@ struct WordLinkModel: Codable {
     
     static func from(wordLink: WordLink) -> WordLinkModel {
         let link = wordLink.hashLink?.link
-        return WordLinkModel(url: link?.url ?? "", hash: wordLink.urlHash, title: link?.title ?? "", text: wordLink.text)
+        return WordLinkModel(url: link?.url ?? "", hash: wordLink.urlHash, title: link?.title ?? link?.url ?? "", text: wordLink.text)
     }
     
     static func modelsWith(wordLinks: [WordLink], loggedInUser: User?) -> [WordLinkModel] {
