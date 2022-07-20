@@ -6,6 +6,7 @@ WEBSERVER_PATH=$(dirname $0)
 
 ./stop
 ./update all
+./restore
 
 cd ${WEBSERVER_PATH}
 
@@ -18,9 +19,6 @@ mkdir -p ${WEBSERVER_PATH}/log
 cp ${WEBSERVER_PATH}/log/log.txt ${WEBSERVER_PATH}/log/log$(date "+%u").txt
 
 swift run Run serve --hostname 0.0.0.0 --port 8091 > ${WEBSERVER_PATH}/log/log.txt 2>&1 &
-#cd ${WEBSERVER_PATH}/python
-#rm wget-log.*
-#python downloadLinks.py > log.txt 2>&1 &
 
 disown
 sleep 3

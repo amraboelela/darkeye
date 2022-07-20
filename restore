@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source /home/amr/.bashrc
+
+WEBSERVER_PATH=$(dirname $0)
+yesterday=$(date -d "yesterday" "+%u")
+cat $WEBSERVER_PATH/log/log.txt | grep -q "setValue: Problem" | echo "restoring DB";rm -rf $WEBSERVER_PATH/Library/Database;mv $WEBSERVER_PATH/Library/Database$yesterday $WEBSERVER_PATH/Library/Database
