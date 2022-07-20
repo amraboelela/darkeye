@@ -4,5 +4,5 @@ source /home/amr/.bashrc
 
 WEBSERVER_PATH=$(dirname $0)
 
-cat $WEBSERVER_PATH/log/log.txt | grep -q "setValue: Problem" || echo "restoring DB";rm -rf $WEBSERVER_PATH/Library/Database;mv $WEBSERVER_PATH/Library/Database1 $WEBSERVER_PATH/Library/Database
+cat $WEBSERVER_PATH/log/log.txt | grep -q "setValue: Problem" || echo "restoring DB";rm -rf $WEBSERVER_PATH/Library/Database;mv $WEBSERVER_PATH/Library/Database$(date "+%u") $WEBSERVER_PATH/Library/Database
 
