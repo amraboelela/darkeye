@@ -11,4 +11,4 @@ sleep 30
 sudo lsof -i :9001 | grep TCP | awk '{print $2}' | xargs -I{} sudo kill -9 {}
 sudo lsof -i :9001 | grep TCP | awk '{print $2}' | xargs -I{} sudo kill -9 {}
 sudo lsof -i :9001 | grep TCP | awk '{print $2}' | xargs -I{} sudo kill -9 {}
-ps aux | grep downloadLinks.py | awk '{print $2}' | xargs -I{} kill -9 {}
+#ps aux | grep downloadLinks.py | awk '{print $2}' | xargs -I{} kill -9 {}
