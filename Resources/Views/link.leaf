@@ -1,4 +1,20 @@
 
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0W1FKQYDXZ"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-0W1FKQYDXZ');
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <meta charset=\"UTF-8\">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
 <table width=100%>
     <tr>
     <td style="padding-left:10px;">
@@ -43,6 +59,9 @@
     <h2>Page not found</h3>
 #endif
 </div>
+</body>
+</html>
+
 #if(blocked):
     <h2 align=center>This page is blocked</h3>
 #else:
