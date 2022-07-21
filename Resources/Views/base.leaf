@@ -3,12 +3,12 @@
 <html>
     <head>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-P4LXTJCQJC"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-0W1FKQYDXZ"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-P4LXTJCQJC');
+            gtag('config', 'G-0W1FKQYDXZ');
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -126,17 +126,8 @@
             }
         </style>
         #import("head")
-        <script type="text/javascript">
-            function pageDidLoad() {
-                #if(scrollToBottom):
-                    //window.scrollTo(0,document.body.scrollHeight);
-                    var objDiv = document.getElementById("scroll");
-                    objDiv.scrollIntoView(true);
-                #endif
-            }
-        </script>
     </head>
-    <body onload="pageDidLoad()">
+    <body>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <br>
         #import("body")
