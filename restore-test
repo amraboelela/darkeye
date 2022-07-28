@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source /home/amr/.bashrc
+
+echo "Restoring DB if needed" 
+WEBSERVER_PATH=$(dirname $0)
+yesterday=$(date -d "yesterday" "+%u")
+if cat $WEBSERVER_PATH/log/log.txt | grep -q "setValue: Problem"; then
+    echo "DB corrupted, restoring DB"
+    echo "leeeeh"
+fi

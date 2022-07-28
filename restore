@@ -5,4 +5,10 @@ source /home/amr/.bashrc
 echo "Restoring DB if needed" > $1 2>&1
 WEBSERVER_PATH=$(dirname $0)
 yesterday=$(date -d "yesterday" "+%u")
-cat $WEBSERVER_PATH/log/log.txt | grep -q "setValue: Problem" && echo "DB corrupted, restoring DB" >> $1 2>&1;rm -rf $WEBSERVER_PATH/Library/Database;mv $WEBSERVER_PATH/Library/Database$yesterday $WEBSERVER_PATH/Library/Database >> $1 2>&1
+
+if cat $WEBSERVER_PATH/log/log.txt | grep -q "setValue: Problem"; then
+    echo "DB corrupted, restoring DB" >> $1 2>&1
+    rm -rf $WEBSERVER_PATH/Library/Database
+    mv $WEBSERVER_PATH/Library/Database$yesterday $WEBSERVER_PATH/Library/Database >> $1 2>&1
+fi
+
