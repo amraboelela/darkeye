@@ -24,7 +24,7 @@ struct LinkModel: Codable {
     
     static func modelsWith(links: [Link], loggedInUser: User?) -> [LinkModel] {
         return links.compactMap { link in
-            var linkModel = from(link: link)
+            let linkModel = from(link: link)
             return linkModel
         }
     }
