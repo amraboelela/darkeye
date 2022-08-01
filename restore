@@ -10,5 +10,17 @@ if cat $WEBSERVER_PATH/log/log.txt | grep -q "setValue: Problem"; then
     echo "DB corrupted, restoring DB" >> $1 2>&1
     rm -rf $WEBSERVER_PATH/Library/Database
     mv $WEBSERVER_PATH/Library/Database$yesterday $WEBSERVER_PATH/Library/Database >> $1 2>&1
+    if cat $1 | grep -q "No such file or directory"; then
+        echo "Restoring DB if needed 2" > $1 2>&1
+	mv $WEBSERVER_PATH/Library/Database0 $WEBSERVER_PATH/Library/Database >> $1 2>&1
+        if cat $1 | grep -q "No such file or directory"; then
+            echo "Restoring DB if needed 3" > $1 2>&1
+            mv $WEBSERVER_PATH/Library/Database1 $WEBSERVER_PATH/Library/Database >> $1 2>&1
+            if cat $1 | grep -q "No such file or directory"; then
+                echo "Restoring DB if needed 4" > $1 2>&1
+                mv $WEBSERVER_PATH/Library/Database2 $WEBSERVER_PATH/Library/Database >> $1 2>&1
+            fi
+	fi
+    fi
 fi
 
