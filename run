@@ -24,6 +24,6 @@ cp ${WEBSERVER_PATH}/log/log.txt ${WEBSERVER_PATH}/log/log$(date "+%u").txt
 swift run Run serve --hostname 0.0.0.0 --port 9001 >> ${WEBSERVER_PATH}/log/log.txt 2>&1 &
 
 disown
-sleep 10
+sleep 3
 cd ${WEBSERVER_PATH}
 cat log/log.txt
