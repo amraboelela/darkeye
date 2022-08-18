@@ -22,7 +22,7 @@ struct DarkEyeModel: Codable {
             isAdmin: loggedInUser?.userRole == .admin,
             searchText: searchText,
             isMobile: req.fromMobile,
-            wordLinksModels: WordLinkModel.modelsWith(wordLinks: wordLinks, loggedInUser: loggedInUser)
+            wordLinksModels: WordLinkModel.modelsWith(wordLinks: wordLinks, searchText: searchText, loggedInUser: loggedInUser)
         )
     }
 }
