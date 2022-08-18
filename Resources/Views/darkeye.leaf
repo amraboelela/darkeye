@@ -36,7 +36,7 @@
         </tr>
         <tr>
         <td style="padding-bottom: 25px;padding-left: 20px;padding-right: 20px;">
-            #(wordLink.text)
+            #unsafeHTML(wordLink.html)
         </td>
         </tr>
     #endfor
