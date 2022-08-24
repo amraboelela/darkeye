@@ -6,7 +6,7 @@ echo "Stopping DarkEye"
 rm stop.*
 wget http://127.0.0.1:9001/darkeye/stop
 
-sleep 30
+sleep 10
 
 sudo lsof -i :9001 | grep TCP | awk '{print $2}' | xargs -I{} sudo kill -9 {}
 sudo lsof -i :9001 | grep TCP | awk '{print $2}' | xargs -I{} sudo kill -9 {}
