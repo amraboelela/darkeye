@@ -4,9 +4,9 @@ source /home/amr/.bashrc
 
 WEBSERVER_PATH=$(dirname $0)
 
-./stop
-./update all
-./restore
+${WEBSERVER_PATH}/stop
+${WEBSERVER_PATH}/update all
+${WEBSERVER_PATH}/restore
 
 cd ${WEBSERVER_PATH}
 
