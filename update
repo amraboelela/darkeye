@@ -3,10 +3,10 @@
 echo "Updating DarkEye"
 
 git pull
-git checkout main
-git pull
-git checkout release
-git merge main --no-edit
+#git checkout main
+#git pull
+#git checkout release
+#git merge main --no-edit
 if [ "$1" == "all" ]; then
     echo
     echo "Updating all packages by running swift package update"
