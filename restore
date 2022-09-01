@@ -12,25 +12,25 @@ if cat $WEBSERVER_PATH/log/log.txt | grep -q "setValue: Problem"; then
     rm -rf $WEBSERVER_PATH/Library/Database
     mv $WEBSERVER_PATH/Library/Database$yesterday $WEBSERVER_PATH/Library/Database >> $1 2>&1
     if cat $1 | grep -q "No such file or directory"; then
-        echo "DB corrupted, restoring Database0" >> $1 2>&1
+        echo "DB corrupted, restoring Database0" > $1 2>&1
 	mv $WEBSERVER_PATH/Library/Database0 $WEBSERVER_PATH/Library/Database >> $1 2>&1
         if cat $1 | grep -q "No such file or directory"; then
-            echo "DB corrupted, restoring Database1" >> $1 2>&1
+            echo "DB corrupted, restoring Database1" > $1 2>&1
             mv $WEBSERVER_PATH/Library/Database1 $WEBSERVER_PATH/Library/Database >> $1 2>&1
             if cat $1 | grep -q "No such file or directory"; then
-                echo "DB corrupted, restoring Database2" >> $1 2>&1
+                echo "DB corrupted, restoring Database2" > $1 2>&1
                 mv $WEBSERVER_PATH/Library/Database2 $WEBSERVER_PATH/Library/Database >> $1 2>&1
                 if cat $1 | grep -q "No such file or directory"; then
-                    echo "DB corrupted, restoring Database3" >> $1 2>&1
+                    echo "DB corrupted, restoring Database3" > $1 2>&1
                     mv $WEBSERVER_PATH/Library/Database3 $WEBSERVER_PATH/Library/Database >> $1 2>&1
                     if cat $1 | grep -q "No such file or directory"; then
-                        echo "DB corrupted, restoring Database4" >> $1 2>&1
+                        echo "DB corrupted, restoring Database4" > $1 2>&1
                         mv $WEBSERVER_PATH/Library/Database4 $WEBSERVER_PATH/Library/Database >> $1 2>&1
                         if cat $1 | grep -q "No such file or directory"; then
-                            echo "DB corrupted, restoring Database5" >> $1 2>&1
+                            echo "DB corrupted, restoring Database5" > $1 2>&1
                             mv $WEBSERVER_PATH/Library/Database5 $WEBSERVER_PATH/Library/Database >> $1 2>&1
                             if cat $1 | grep -q "No such file or directory"; then
-                                echo "DB corrupted, restoring Database6" >> $1 2>&1
+                                echo "DB corrupted, restoring Database6" > $1 2>&1
                                 mv $WEBSERVER_PATH/Library/Database6 $WEBSERVER_PATH/Library/Database >> $1 2>&1
                             fi
 			fi
