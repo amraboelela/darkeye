@@ -81,3 +81,4 @@ Library
 log
 log*.txt
 wget-log
+cache
