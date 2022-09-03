@@ -9,9 +9,14 @@ struct LinkModel: Codable {
     var numberOfReports: Int
     var blocked: Bool?
     
-    static func from(link: Link) -> LinkModel {
+    static func from(link: Link) async -> LinkModel {
         var theLink = link
-        theLink.saveChildrenIfNeeded()
+        do {
+            try await theLink.saveChildrenIfNeeded()
+        } catch {
+            NSLog("LinkModel from:link theLink.saveChildrenIfNeeded() failed, error: \(error). Exiting.")
+            exit(0)
+        }
         var linkHtml = theLink.html ?? ""
         for (rawURL, refinedURL) in theLink.urls {
             //print("rawURL: \(rawURL)")
@@ -22,10 +27,9 @@ struct LinkModel: Codable {
         return LinkModel(url: theLink.url, title: theLink.title, html: linkHtml, numberOfReports: theLink.numberOfReports, blocked: theLink.blocked)
     }
     
-    static func modelsWith(links: [Link], loggedInUser: User?) -> [LinkModel] {
-        return links.compactMap { link in
-            let linkModel = from(link: link)
-            return linkModel
+    static func modelsWith(links: [Link], loggedInUser: User?) async -> [LinkModel] {
+        return await links.asyncCompactMap { link in
+            return await from(link: link)
         }
     }
 

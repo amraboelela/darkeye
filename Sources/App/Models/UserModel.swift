@@ -3,18 +3,9 @@ import Vapor
 import DarkEyeCore
 
 struct UserModel: Codable {
-    /*var username: String
-    var password: String?
-    var errorMessage: String?
-    var usernameErrorMessage: String?
-    var passwordErrorMessage: String?
-    */
     var username: String
     var password: String?
     var confirmPassword: String?
-    //var fullname: String?
-    //var location: String?
-    //var bio: String?
     var url: String?
     var errorMessage: String?
     var usernameErrorMessage: String?
@@ -22,8 +13,8 @@ struct UserModel: Codable {
     var confirmPasswordErrorMessage: String?
     var success: Bool?
     
-    var user: User {
-        var result = User.userWith(username: username) ?? User.createWith(username: username)
+    func user() async -> User {
+        var result = await User.userWith(username: username) ?? User.createWith(username: username)
         if let password = password {
             result.password = password.base64()
         }
@@ -42,8 +33,8 @@ struct UserModel: Codable {
         }
     }
     
-    static func modelWith(username: String) -> UserModel {
-        let user = User.userWith(username: username) ?? User.createWith(username: username)
+    static func modelWith(username: String) async -> UserModel {
+        let user = await User.userWith(username: username) ?? User.createWith(username: username)
         return UserModel(username: username, password: user.password, confirmPassword: user.password, url: user.url)
     }
 }

@@ -15,34 +15,34 @@ struct DarkEyeController: RouteCollection {
     
     // MARK: - route Handlers
     
-    func darkEyeHandler(_ req: Request) -> EventLoopFuture<View> {
-        return req.view.render("darkeye", DarkEyeModel.modelWith(req: req, title: "Dark Eye", wordLinks: [WordLink]()))
+    func darkEyeHandler(_ req: Request) async throws -> View {
+        return try await req.view.render("darkeye", DarkEyeModel.modelWith(req: req, title: "Dark Eye", wordLinks: [WordLink]()))
     }
     
-    func searchHandler(_ req: Request) throws -> EventLoopFuture<View> {
+    func searchHandler(_ req: Request) async throws -> View {
         let command = req.parameters.get("search") ?? ""
         if command != "search" {
             print("command != search")
         }
         let searchText = req.query[String.self, at: "text"] ?? ""
         print("searchText: \(searchText)")
-        let links = WordLink.wordLinks(withSearchText: searchText, count: DarkEyeModel.linksCount)
-        let darkEyeModel = DarkEyeModel.modelWith(req: req, title: "Dark Eye search: " + searchText, searchText: searchText, wordLinks: links)
-        return req.view.render("darkeye", darkEyeModel)
+        let links = await WordLink.wordLinks(withSearchText: searchText, count: DarkEyeModel.linksCount)
+        let darkEyeModel = await DarkEyeModel.modelWith(req: req, title: "Dark Eye search: " + searchText, searchText: searchText, wordLinks: links)
+        return try await req.view.render("darkeye", darkEyeModel)
     }
     
-    func stopHandler(_ req: Request) -> EventLoopFuture<View> {
-        appController.stopTheApp()
-        return req.view.render("stop")
+    func stopHandler(_ req: Request) async throws -> View {
+        try await appController.stopTheApp()
+        return try await req.view.render("stop")
     }
     
-    func startHandler(_ req: Request) -> EventLoopFuture<View> {
-        appController.startTheApp()
-        return req.view.render("start")
+    func startHandler(_ req: Request) async throws -> View {
+        try await appController.startTheApp()
+        return try await req.view.render("start")
     }
     
-    func exitHandler(_ req: Request) -> EventLoopFuture<View> {
-        appController.exitTheApp()
-        return req.view.render("exit")
+    func exitHandler(_ req: Request) async throws -> View {
+        try await appController.exitTheApp()
+        return try await req.view.render("exit")
     }
 }

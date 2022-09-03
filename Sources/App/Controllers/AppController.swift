@@ -10,18 +10,21 @@ class AppController: CrawlerDelegate {
         exit(0)
     }
 
-    func exitTheApp() {
+    func exitTheApp() async throws {
+        let crawler = try await Crawler.shared()
         crawler.delegate = self
-        crawler.stop()
+        await crawler.stop()
     }
     
-    func stopTheApp() {
+    func stopTheApp() async throws {
+        let crawler = try await Crawler.shared()
         crawler.delegate = nil
-        crawler.stop()
+        await crawler.stop()
     }
     
-    func startTheApp() {
+    func startTheApp() async throws {
+        let crawler = try await Crawler.shared()
         crawler.delegate = nil
-        crawler.start()
+        await crawler.start()
     }
 }

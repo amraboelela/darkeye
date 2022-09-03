@@ -14,9 +14,9 @@ struct DarkEyeModel: Codable {
     var isMobile: Bool
     var wordLinksModels: [WordLinkModel]
     
-    static func modelWith(req: Request, title: String, searchText: String = "", wordLinks: [WordLink]) -> DarkEyeModel {
-        let loggedInUser = session.userAt(sessionID: req.sessionID)
-        return DarkEyeModel(
+    static func modelWith(req: Request, title: String, searchText: String = "", wordLinks: [WordLink]) async -> DarkEyeModel {
+        let loggedInUser = await session.userAt(sessionID: req.sessionID)
+        return await DarkEyeModel(
             loggedInUser: loggedInUser,
             title: title,
             isAdmin: loggedInUser?.userRole == .admin,

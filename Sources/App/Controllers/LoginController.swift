@@ -10,35 +10,34 @@ struct LoginController: RouteCollection {
         routes.get("darkeye", "logout", use: logoutHandler)
     }
     
-    func loginHandler(_ req: Request) -> EventLoopFuture<View> {
-        return req.view.render("login")
+    func loginHandler(_ req: Request) async throws -> View {
+        return try await req.view.render("login")
     }
     
-    func login(_ req: Request) throws -> EventLoopFuture<Response> {
+    func login(_ req: Request) async throws -> Response {
         var userModel = try req.content.decode(UserModel.self)
         print("userModel: \(userModel)")
         if userModel.username.isVacant {
             userModel.usernameErrorMessage = "Username required"
         } else if userModel.password == nil || userModel.password?.isVacant == true {
             userModel.passwordErrorMessage = "Password required"
-        } else if User.usernameExists(userModel.username) {
-            var user = User.userWith(username: userModel.username) ?? User.createWith(username: userModel.username)
+        } else if await User.usernameExists(userModel.username) {
+            var user = await User.userWith(username: userModel.username) ?? User.createWith(username: userModel.username)
             if user.password == userModel.password?.base64() {
                 if user.userStatus == .suspended {
                     userModel.errorMessage = "This account has been suspended"
                 } else {
                     let sessionID = UUID().uuidString
                     session.sessions[sessionID] = userModel.username
-                    let response = req.redirect(to: "/")
+                    let response = req.redirect(to: "/darkeye")
                     let expiryDate = Date(timeIntervalSinceNow: TimeInterval(60 * 60 * 24 * 7)) // one week
                     let cookieExpiryDate = expiryDate.cookieFormattedString
                     let cookieValue = "sessionID=\(sessionID); Expires=\(cookieExpiryDate); Path=/; SameSite=Lax"
                     response.headers.add(name: "set-cookie", value: cookieValue)
                     
                     user.timeLoggedin = Date.secondsSinceReferenceDate
-                    database[User.prefix + user.username] = user
-                    
-                    return req.eventLoop.makeSucceededFuture(response)
+                    try await database.setValue(user, forKey: User.prefix + user.username)
+                    return response
                 }
             } else {
                 userModel.errorMessage = "Username or password error"
@@ -46,16 +45,13 @@ struct LoginController: RouteCollection {
         } else {
             userModel.errorMessage = "Username or password error"
         }
-        return req.view.render("login", userModel).flatMap { view in
-            return view.encodeResponse(for: req).flatMap { response in
-                return req.eventLoop.makeSucceededFuture(response)
-            }
-        }
+        let view: View = try await req.view.render("login", userModel)
+        return try await view.encodeResponse(for: req)
     }
     
-    func logoutHandler(_ req: Request) throws -> EventLoopFuture<Response> {
+    func logoutHandler(_ req: Request) -> Response {
         let response = req.redirect(to: "/darkeye")
         session.sessions[req.sessionID] = nil
-        return req.eventLoop.makeSucceededFuture(response)
+        return response
     }
 }

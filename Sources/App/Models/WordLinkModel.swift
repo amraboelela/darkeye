@@ -8,8 +8,8 @@ struct WordLinkModel: Codable {
     var title: String
     var html: String
     
-    static func from(wordLink: WordLink, searchText: String) -> WordLinkModel {
-        let link = wordLink.hashLink?.link
+    static func from(wordLink: WordLink, searchText: String) async -> WordLinkModel {
+        let link = await wordLink.hashLink()?.link()
         var html = wordLink.text
         let searchTokens = searchText.components(separatedBy: " ")
         for searchToken in searchTokens {
@@ -25,9 +25,9 @@ struct WordLinkModel: Codable {
         }
     }
     
-    static func modelsWith(wordLinks: [WordLink], searchText: String, loggedInUser: User?) -> [WordLinkModel] {
-        return wordLinks.compactMap { wordLink in
-            let wordLinkModel = from(wordLink: wordLink, searchText: searchText)
+    static func modelsWith(wordLinks: [WordLink], searchText: String, loggedInUser: User?) async -> [WordLinkModel] {
+        return await wordLinks.asyncCompactMap { wordLink in
+            let wordLinkModel = await from(wordLink: wordLink, searchText: searchText)
             return wordLinkModel
         }
     }
