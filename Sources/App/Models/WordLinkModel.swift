@@ -9,8 +9,7 @@ struct WordLinkModel: Codable {
     var html: String
     
     static func from(wordLink: WordLink, searchText: String) async -> WordLinkModel {
-        let link: Link? = await database.valueForKey(Link.prefix + wordLink.url)
-        //let link = await wordLink.hashLink()?.link()
+        let link: Link? = await database.value(forKey: Link.prefix + wordLink.url)
         var html = wordLink.text
         let searchTokens = searchText.components(separatedBy: " ")
         for searchToken in searchTokens {
