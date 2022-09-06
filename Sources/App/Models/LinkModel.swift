@@ -11,12 +11,7 @@ struct LinkModel: Codable {
     
     static func from(link: Link) async -> LinkModel {
         var theLink = link
-        do {
-            try await theLink.saveChildrenIfNeeded()
-        } catch {
-            NSLog("LinkModel from:link theLink.saveChildrenIfNeeded() failed, error: \(error). Exiting.")
-            exit(0)
-        }
+        await theLink.saveChildrenIfNeeded()
         var linkHtml = theLink.html ?? ""
         for (rawURL, refinedURL) in theLink.urls {
             //print("rawURL: \(rawURL)")
@@ -24,7 +19,7 @@ struct LinkModel: Codable {
             //print("refinedURL hash: \(hash)")
             linkHtml = linkHtml.replacingOccurrences(of: "href=\"" + rawURL + "\"", with: "href=\"/darkeye/v/" + hash + "\"")
         }
-        return LinkModel(url: theLink.url, title: theLink.title, html: linkHtml, numberOfReports: theLink.numberOfReports, blocked: theLink.blocked)
+        return await LinkModel(url: theLink.url, title: theLink.title, html: linkHtml, numberOfReports: theLink.site()?.numberOfReports ?? 0, blocked: theLink.site()?.blocked ?? false)
     }
     
     static func modelsWith(links: [Link], loggedInUser: User?) async -> [LinkModel] {

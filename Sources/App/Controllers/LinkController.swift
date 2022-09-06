@@ -24,14 +24,9 @@ struct LinkController: RouteCollection {
     
     func blockLink(_ req: Request) async throws -> View {
         let hash = req.parameters.get("hash") ?? ""
-        if var link = await HashLink.linkWith(hash: hash) {
-            link.blocked = true
-            do {
-                try await link.save()
-            } catch {
-                NSLog("reportLink link.save() failed, error: \(error). exiting.")
-                exit(0)
-            }
+        if let link = await HashLink.linkWith(hash: hash), var site = await link.site() {
+            site.blocked = true
+            await site.save()
             return try await req.view.render("link", LinkModel.from(link: link))
         }
         return try await req.view.render("link")
@@ -39,14 +34,9 @@ struct LinkController: RouteCollection {
     
     func reportLink(_ req: Request) async throws -> View {
         let hash = req.parameters.get("hash") ?? ""
-        if var link = await HashLink.linkWith(hash: hash) {
-            link.numberOfReports += 1
-            do {
-                try await link.save()
-            } catch {
-                NSLog("reportLink link.save() failed, error: \(error). exiting.")
-                exit(0)
-            }
+        if let link = await HashLink.linkWith(hash: hash), var site = await link.site() {
+            site.numberOfReports += 1
+            await site.save()
             return try await req.view.render("link", LinkModel.from(link: link))
         }
         return try await req.view.render("link")

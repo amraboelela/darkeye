@@ -19,11 +19,11 @@ public func configure(_ app: Application) throws {
     app.views.use(.leaf)
     
     database = LevelDB(parentPath: app.directory.workingDirectory + "Library", name: "Database")
-    Link.workingDirectory = app.directory.workingDirectory
+    Global.workingDirectory = app.directory.workingDirectory
     //print("Starting the crawler")
     //crawler.delegate = appController
     Task(priority: .background) {
-        let crawler = try await Crawler.shared()
+        let crawler = await Crawler.shared()
         await crawler.start()
     }
     // register routes

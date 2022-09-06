@@ -9,7 +9,8 @@ struct WordLinkModel: Codable {
     var html: String
     
     static func from(wordLink: WordLink, searchText: String) async -> WordLinkModel {
-        let link = await wordLink.hashLink()?.link()
+        let link: Link? = await database.valueForKey(Link.prefix + wordLink.url)
+        //let link = await wordLink.hashLink()?.link()
         var html = wordLink.text
         let searchTokens = searchText.components(separatedBy: " ")
         for searchToken in searchTokens {
@@ -18,10 +19,10 @@ struct WordLinkModel: Codable {
                 html = html.replacingOccurrences(of: rangeToken, with: "<b>\(rangeToken)</b>")
             }
         }
-        if let title = link?.title, !title.isEmpty {
-            return WordLinkModel(url: link?.url ?? "", hash: wordLink.urlHash, title: title, html: html)
+        if let link = link, !link.title.isEmpty {
+            return WordLinkModel(url: link.url, hash: link.hash, title: link.title, html: html)
         } else {
-            return WordLinkModel(url: "", hash: wordLink.urlHash, title: link?.url ?? "No Title", html: html)
+            return WordLinkModel(url: "", hash: wordLink.url.hashBase32(numberOfDigits: 12), title: link?.url ?? "No Title", html: html)
         }
     }
     
