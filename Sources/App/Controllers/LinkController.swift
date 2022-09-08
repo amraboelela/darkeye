@@ -25,7 +25,9 @@ struct LinkController: RouteCollection {
     func blockLink(_ req: Request) async throws -> View {
         let hash = req.parameters.get("hash") ?? ""
         if let link = await HashLink.linkWith(hash: hash), var site = await link.site() {
-            site.blocked = true
+            if site.canBeBlocked {
+                site.blocked = true
+            }
             await site.save()
             return try await req.view.render("link", LinkModel.from(link: link))
         }

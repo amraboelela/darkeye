@@ -44,10 +44,10 @@
 <div align=center style='font-size: 17px;'>
 #if(url):
     #if(moderatorOrAdmin):
-        #if(blocked):
-        <a href="/darkeye/unblock/#(hash)">Unblock</a>
-        #else:
+        #if(allowed):
         <a href="/darkeye/block/#(hash)">Block</a>
+        #else:
+        <a href="/darkeye/unblock/#(hash)">Unblock</a>
         #endif
     #else:
         <a href="/darkeye/report/#(hash)">Report</a>
@@ -62,10 +62,10 @@
 </body>
 </html>
 
-#if(blocked):
-    <h2 align=center>This page is blocked</h3>
-#else:
+#if(allowed):
     #if(html):
         #unsafeHTML(html)
     #endif
+#else:
+    <h2 align=center>This page is blocked</h3>
 #endif
