@@ -18,8 +18,8 @@ struct WordLinkModel: Codable {
                 html = html.replacingOccurrences(of: rangeToken, with: "<b>\(rangeToken)</b>")
             }
         }
-        if let link = link, !link.title.isEmpty {
-            return WordLinkModel(url: link.url, hash: link.hash, title: link.title, html: html)
+        if let link = link, await !link.title().isEmpty {
+            return await WordLinkModel(url: link.url, hash: link.hash, title: link.title(), html: html)
         } else {
             return WordLinkModel(url: "", hash: wordLink.url.hashBase32(numberOfDigits: 12), title: link?.url ?? "No Title", html: html)
         }

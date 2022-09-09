@@ -12,14 +12,14 @@ struct LinkModel: Codable {
     static func from(link: Link) async -> LinkModel {
         var theLink = link
         await theLink.saveChildrenIfNeeded()
-        var linkHtml = theLink.html ?? ""
-        for (rawURL, refinedURL) in theLink.urls {
+        var linkHtml = await theLink.html() ?? ""
+        for (rawURL, refinedURL) in await theLink.urls() {
             //print("rawURL: \(rawURL)")
             let hash = refinedURL.hashBase32(numberOfDigits: 12)
             //print("refinedURL hash: \(hash)")
             linkHtml = linkHtml.replacingOccurrences(of: "href=\"" + rawURL + "\"", with: "href=\"/darkeye/v/" + hash + "\"")
         }
-        return await LinkModel(url: theLink.url, title: theLink.title, html: linkHtml, numberOfReports: theLink.site()?.numberOfReports ?? 0, allowed: theLink.site()?.allowed ?? true)
+        return await LinkModel(url: theLink.url, title: theLink.title(), html: linkHtml, numberOfReports: theLink.site()?.numberOfReports ?? 0, allowed: theLink.site()?.allowed ?? true)
     }
     
     static func modelsWith(links: [Link], loggedInUser: User?) async -> [LinkModel] {
