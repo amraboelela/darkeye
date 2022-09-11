@@ -82,3 +82,6 @@ log
 log*.txt
 wget-log
 cache
+stop.1
+test-torsocks.html
+
