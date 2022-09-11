@@ -12,6 +12,7 @@ struct DarkEyeModel: Codable {
     var isAdmin: Bool
     var searchText: String?
     var isMobile: Bool
+    var isTorBrowser: Bool
     var wordLinksModels: [WordLinkModel]
     
     static func modelWith(req: Request, title: String, searchText: String = "", wordLinks: [WordLink]) async -> DarkEyeModel {
@@ -22,6 +23,7 @@ struct DarkEyeModel: Codable {
             isAdmin: loggedInUser?.userRole == .admin,
             searchText: searchText,
             isMobile: req.fromMobile,
+            isTorBrowser: req.fromTorBrowser,
             wordLinksModels: WordLinkModel.modelsWith(wordLinks: wordLinks, searchText: searchText, loggedInUser: loggedInUser)
         )
     }

@@ -3,8 +3,13 @@
     <table>
         <tr>
         <td class=icon>
-            <a href="https://hanein.news"><img src="/darkeye/images/hanein-icon.png" alt="Hanein Icon" width="80" height="50" /></a>
-            <a href=/darkeye><img src="/darkeye/images/darkeye-icon.png" alt="DarkEye Icon" width="80" height="50" /></a>
+            <a href="http://darkeyejce5fone2srstf3j26u6jbjpctkwejiis6qsrqxbpa4k4hlad.onion/darkeye"><img src="/darkeye/images/darkeye-icon.png" alt="DarkEye Icon" width="80" height="50" /></a>
+            #if(isTorBrowser):
+            <a href="http://haneinhodfxcjcnsm6efuyzdffcrejd7jmstte7hwdvhf67x6okyb2ad.onion">
+            #else:
+            <a href="https://hanein.news">
+            #endif
+            <img src="/darkeye/images/hanein-icon.png" alt="Hanein Icon" width="80" height="50" /></a>
         </td>
         <td>
             <form class="search" action="/darkeye/search" style="margin:auto;max-width:400px" >
@@ -14,7 +19,7 @@
         </td>
         <td align="center">
         #if(userModel):
-        #(userModel.username) | <a href="/logout">Logout</a>
+            #(userModel.username) | <a href="/logout">Logout</a>
         #else:
             <a href="/login">Login</a>
         #endif

@@ -20,8 +20,7 @@ public func configure(_ app: Application) throws {
     
     database = LevelDB(parentPath: app.directory.workingDirectory + "Library", name: "Database")
     Global.workingDirectory = app.directory.workingDirectory
-    //print("Starting the crawler")
-    //crawler.delegate = appController
+
     Task(priority: .background) {
         let crawler = await Crawler.shared()
         await crawler.start()
