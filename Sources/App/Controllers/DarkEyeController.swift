@@ -1,9 +1,9 @@
 
 import Vapor
 import Leaf
-import DarkEyeCore
+import DarkeyeCore
 
-struct DarkEyeController: RouteCollection {
+struct DarkeyeController: RouteCollection {
     
     func boot(routes: RoutesBuilder) throws {
         routes.get("darkeye", use: darkEyeHandler)
@@ -16,7 +16,7 @@ struct DarkEyeController: RouteCollection {
     // MARK: - route Handlers
     
     func darkEyeHandler(_ req: Request) async throws -> View {
-        return try await req.view.render("darkeye", DarkEyeModel.modelWith(req: req, title: "Dark Eye", wordLinks: [WordLink]()))
+        return try await req.view.render("darkeye", DarkeyeModel.modelWith(req: req, title: "Darkeye", wordLinks: [WordLink]()))
     }
     
     func searchHandler(_ req: Request) async throws -> View {
@@ -26,8 +26,8 @@ struct DarkEyeController: RouteCollection {
         }
         let searchText = req.query[String.self, at: "text"] ?? ""
         print("searchText: \(searchText)")
-        let links = await WordLink.wordLinks(withSearchText: searchText, count: DarkEyeModel.linksCount)
-        let darkEyeModel = await DarkEyeModel.modelWith(req: req, title: "Dark Eye search: " + searchText, searchText: searchText, wordLinks: links)
+        let links = await WordLink.wordLinks(withSearchText: searchText, count: DarkeyeModel.linksCount)
+        let darkEyeModel = await DarkeyeModel.modelWith(req: req, title: "Darkeye search: " + searchText, searchText: searchText, wordLinks: links)
         return try await req.view.render("darkeye", darkEyeModel)
     }
     

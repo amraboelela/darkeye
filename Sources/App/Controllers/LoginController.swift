@@ -1,7 +1,7 @@
 
 import Vapor
 import Leaf
-import DarkEyeCore
+import DarkeyeCore
 
 struct LoginController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {

@@ -2,7 +2,7 @@
 import NIOSSL
 import Vapor
 import Leaf
-import DarkEyeCore
+import DarkeyeCore
 import SwiftLevelDB
 
 var application: Application!

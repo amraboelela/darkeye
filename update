@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Updating DarkEye"
+echo "Updating Darkeye"
 
 git pull
 if [ "$1" == "all" ]; then

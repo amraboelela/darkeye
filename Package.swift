@@ -2,14 +2,14 @@
 import PackageDescription
 
 let package = Package(
-    name: "DarkEye",
+    name: "Darkeye",
     platforms: [
         .macOS(.v12)
     ],
     dependencies: [
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
         .package(url: "https://github.com/amraboelela/VaporCommon.git", .branch("main")),
-        .package(url: "https://github.com/amraboelela/DarkEyeCore.git", .branch("main")),
+        .package(url: "https://github.com/amraboelela/DarkeyeCore.git", .branch("main")),
     ],
     
     targets: [
@@ -17,7 +17,7 @@ let package = Package(
             name: "App",
             dependencies: [
                 .product(name: "VaporCommon", package: "VaporCommon"),
-                .product(name: "DarkEyeCore", package: "DarkEyeCore"),
+                .product(name: "DarkeyeCore", package: "DarkeyeCore"),
             ],
             swiftSettings: [
                 // Enable better optimizations when building in Release configuration. Despite the use of

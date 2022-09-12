@@ -1,6 +1,6 @@
 
 import Vapor
-import DarkEyeCore
+import DarkeyeCore
 
 let session = Session()
 class Session {

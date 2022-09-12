@@ -1,6 +1,6 @@
 
 import Vapor
-import DarkEyeCore
+import DarkeyeCore
 
 struct UserModel: Codable {
     var username: String

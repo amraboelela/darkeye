@@ -9,7 +9,7 @@ ${WEBSERVER_PATH}/stop
 
 cd ${WEBSERVER_PATH}
 
-echo "Running DarkEye"
+echo "Running Darkeye"
 
 #rm -rf Library/Database
 

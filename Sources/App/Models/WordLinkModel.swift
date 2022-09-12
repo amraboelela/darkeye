@@ -1,6 +1,6 @@
 
 import Vapor
-import DarkEyeCore
+import DarkeyeCore
 
 struct WordLinkModel: Codable {
     var url: String

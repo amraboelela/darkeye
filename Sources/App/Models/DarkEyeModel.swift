@@ -1,10 +1,10 @@
 
-import DarkEyeCore
+import DarkeyeCore
 import NIOPosix
 import Vapor
 import VaporCommon
 
-struct DarkEyeModel: Codable {
+struct DarkeyeModel: Codable {
     static let linksCount = 20
     
     var loggedInUser: User?
@@ -15,9 +15,9 @@ struct DarkEyeModel: Codable {
     var isTorBrowser: Bool
     var wordLinksModels: [WordLinkModel]
     
-    static func modelWith(req: Request, title: String, searchText: String = "", wordLinks: [WordLink]) async -> DarkEyeModel {
+    static func modelWith(req: Request, title: String, searchText: String = "", wordLinks: [WordLink]) async -> DarkeyeModel {
         let loggedInUser = await session.userAt(sessionID: req.sessionID)
-        return await DarkEyeModel(
+        return await DarkeyeModel(
             loggedInUser: loggedInUser,
             title: title,
             isAdmin: loggedInUser?.userRole == .admin,

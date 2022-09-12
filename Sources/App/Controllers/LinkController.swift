@@ -1,7 +1,7 @@
 
 import Vapor
 import Leaf
-import DarkEyeCore
+import DarkeyeCore
 import SwiftLevelDB
 
 struct LinkController: RouteCollection {

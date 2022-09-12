@@ -1,5 +1,5 @@
 
-import DarkEyeCore
+import DarkeyeCore
 import Foundation
 
 let appController = AppController()

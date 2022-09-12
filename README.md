@@ -1,7 +1,7 @@
-# DarkEye
+# Darkeye
 Search engline for legal websites in darknet (the dark web).
 
-- To run the DarkEye server:
+- To run the Darkeye server:
 
 ```
 $ ./run

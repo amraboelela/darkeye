@@ -3,7 +3,7 @@
     <table>
         <tr>
         <td class=icon>
-            <a href="http://darkeyejce5fone2srstf3j26u6jbjpctkwejiis6qsrqxbpa4k4hlad.onion/darkeye"><img src="/darkeye/images/darkeye-icon.png" alt="DarkEye Icon" width="80" height="50" /></a>
+            <a href="http://darkeyejce5fone2srstf3j26u6jbjpctkwejiis6qsrqxbpa4k4hlad.onion/darkeye"><img src="/darkeye/images/darkeye-icon.png" alt="Darkeye Icon" width="80" height="50" /></a>
             #if(isTorBrowser):
             <a href="http://haneinhodfxcjcnsm6efuyzdffcrejd7jmstte7hwdvhf67x6okyb2ad.onion">
             #else:

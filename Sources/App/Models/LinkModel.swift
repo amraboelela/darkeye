@@ -1,6 +1,6 @@
 
 import Vapor
-import DarkEyeCore
+import DarkeyeCore
 
 struct LinkModel: Codable {
     var url: String

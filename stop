@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Stopping DarkEye"
+echo "Stopping Darkeye"
 
 
 rm stop.*
