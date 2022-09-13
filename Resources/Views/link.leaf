@@ -43,6 +43,8 @@
 </table>
 <div align=center style='font-size: 17px;'>
 #if(url):
+    &nbsp;&nbsp;<a href=#(url)>#(url)</a>
+    <br><br>
     #if(moderatorOrAdmin):
         #if(allowed):
         <a href="/darkeye/block/#(hash)">Block</a>
@@ -52,7 +54,6 @@
     #else:
         <a href="/darkeye/report/#(hash)">Report</a>
     #endif
-    &nbsp;&nbsp;<a href=#(url)>#(url)</a>
     <br><br>
     <hr>
 #else:
