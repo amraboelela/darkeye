@@ -16,7 +16,7 @@ struct DarkeyeController: RouteCollection {
     // MARK: - route Handlers
     
     func darkEyeHandler(_ req: Request) async throws -> View {
-        return try await req.view.render("darkeye", DarkeyeModel.modelWith(req: req, title: "Darkeye", wordLinks: [WordLink]()))
+        return try await req.view.render("darkeye", DarkeyeModel.modelWith(req: req, title: DarkeyeModel.title, wordLinks: [WordLink]()))
     }
     
     func searchHandler(_ req: Request) async throws -> View {
@@ -27,7 +27,7 @@ struct DarkeyeController: RouteCollection {
         let searchText = req.query[String.self, at: "text"] ?? ""
         print("searchText: \(searchText)")
         let links = await WordLink.wordLinks(withSearchText: searchText, count: DarkeyeModel.linksCount)
-        let darkEyeModel = await DarkeyeModel.modelWith(req: req, title: "Darkeye search: " + searchText, searchText: searchText, wordLinks: links)
+        let darkEyeModel = await DarkeyeModel.modelWith(req: req, title: DarkeyeModel.title + " search: " + searchText, searchText: searchText, wordLinks: links)
         return try await req.view.render("darkeye", darkEyeModel)
     }
     
