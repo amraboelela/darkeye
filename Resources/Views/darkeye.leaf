@@ -92,14 +92,16 @@
             
             </table>
             
+            
             <table width="100%">
             <tr>
+            #if(wordLink.hasMoreChildren):
             <td style="padding-bottom: 25px;font-size: 12px;padding-left: 20px;">
-                #if(wordLink.hasMoreChildren):
-                <a href="/darkeye/search?text=fuss&more=#(wordLink.hash)">More...</a>
-                #else:
+                <a href="/darkeye/search?text=fuss&more=#(wordLink.hash)">More ...</a>
+            #else:
+            <td style="padding-bottom: 10px;font-size: 12px;padding-left: 20px;">
                 &nbsp;
-                #endif
+            #endif
             </td>
             </tr>
             </table>
