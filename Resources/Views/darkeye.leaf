@@ -40,7 +40,11 @@
         </td>
         </tr>
         <tr>
+        #if(wordLink.allChildren):
+        <td style="padding-bottom: 15px;padding-left: 20px;padding-right: 20px;">
+        #else:
         <td style="padding-bottom: 25px;padding-left: 20px;padding-right: 20px;">
+        #endif
             #unsafeHTML(wordLink.html)
         </td>
         </tr>
@@ -61,7 +65,7 @@
                 </td>
                 </tr>
                 <tr>
-                <td style="padding-bottom: 25px;padding-left: 20px;padding-right: 20px;">
+                <td style="padding-bottom: 15px;padding-left: 20px;padding-right: 20px;">
                     #unsafeHTML(childWordLink.html)
                 </td>
                 </tr>
@@ -79,7 +83,7 @@
                 </td>
                 </tr>
                 <tr>
-                <td style="padding-bottom: 25px;padding-left: 20px;padding-right: 20px;">
+                <td style="padding-bottom: 15px;padding-left: 20px;padding-right: 20px;">
                     #unsafeHTML(childWordLink.html)
                 </td>
                 </tr>
@@ -88,15 +92,17 @@
             
             </table>
             
-            #if(wordLink.hasMoreChildren):
             <table width="100%">
             <tr>
-            <td style="font-size: 12px;padding-left: 20px;">
+            <td style="padding-bottom: 25px;font-size: 12px;padding-left: 20px;">
+                #if(wordLink.hasMoreChildren):
                 <a href="/darkeye/search?text=fuss&more=#(wordLink.hash)">More...</a>
+                #else:
+                &nbsp;
+                #endif
             </td>
             </tr>
             </table>
-            #endif
             
         </td>
         </tr>
