@@ -16,7 +16,13 @@ struct DarkeyeModel: Codable {
     var isTorBrowser: Bool
     var wordLinksModels: [WordLinkModel]
     
-    static func modelWith(req: Request, title: String, searchText: String = "", wordLinks: [WordLink]) async -> DarkeyeModel {
+    static func modelWith(
+        req: Request,
+        title: String,
+        searchText: String = "",
+        wordLinks: [WordLink],
+        moreHash: String? = nil
+    ) async -> DarkeyeModel {
         let loggedInUser = await session.userAt(sessionID: req.sessionID)
         return await DarkeyeModel(
             loggedInUser: loggedInUser,
@@ -25,7 +31,11 @@ struct DarkeyeModel: Codable {
             searchText: searchText,
             isMobile: req.fromMobile,
             isTorBrowser: req.fromTorBrowser,
-            wordLinksModels: WordLinkModel.modelsWith(wordLinks: wordLinks, searchText: searchText, loggedInUser: loggedInUser)
+            wordLinksModels: WordLinkModel.modelsWith(
+                wordLinks: wordLinks,
+                searchText: searchText,
+                moreHash: moreHash
+            )
         )
     }
 }

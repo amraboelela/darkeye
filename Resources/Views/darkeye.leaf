@@ -44,6 +44,62 @@
             #unsafeHTML(wordLink.html)
         </td>
         </tr>
+        <tr>
+        <td style="padding-left: 20px;">
+            
+            <table width="100%">
+            #if(wordLink.showAllChildren):
+            #for(childWordLink in wordLink.allChildren):
+                <tr>
+                <td style="font-size: 12px;padding-left: 20px;">
+                    #(childWordLink.url)
+                </td>
+                </tr>
+                <tr>
+                <td style="font-size: 17px;padding-left: 20px;">
+                    <a href="/darkeye/v/#(wordLink.hash)">#(childWordLink.title)</a>
+                </td>
+                </tr>
+                <tr>
+                <td style="padding-bottom: 25px;padding-left: 20px;padding-right: 20px;">
+                    #unsafeHTML(childWordLink.html)
+                </td>
+                </tr>
+            #endfor
+            #else:
+            #for(childWordLink in wordLink.topChildren):
+                <tr>
+                <td style="font-size: 12px;padding-left: 20px;">
+                    #(childWordLink.url)
+                </td>
+                </tr>
+                <tr>
+                <td style="font-size: 17px;padding-left: 20px;">
+                    <a href="/darkeye/v/#(wordLink.hash)">#(childWordLink.title)</a>
+                </td>
+                </tr>
+                <tr>
+                <td style="padding-bottom: 25px;padding-left: 20px;padding-right: 20px;">
+                    #unsafeHTML(childWordLink.html)
+                </td>
+                </tr>
+            #endfor
+            #endif
+            
+            </table>
+            
+            #if(wordLink.hasMoreChildren):
+            <table width="100%">
+            <tr>
+            <td style="font-size: 12px;padding-left: 20px;">
+                <a href="/darkeye/search?text=fuss&more=#(wordLink.hash)">More...</a>
+            </td>
+            </tr>
+            </table>
+            #endif
+            
+        </td>
+        </tr>
     #endfor
     </table>
     #endexport
