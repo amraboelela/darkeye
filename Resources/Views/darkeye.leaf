@@ -97,7 +97,7 @@
             <tr>
             #if(wordLink.hasMoreChildren):
             <td style="padding-bottom: 25px;font-size: 12px;padding-left: 20px;">
-                <a href="/darkeye/search?text=fuss&more=#(wordLink.hash)">More ...</a>
+                <a href="/darkeye/search?text=#(searchText)&more=#(wordLink.hash)">More ...</a>
             #else:
             <td style="padding-bottom: 10px;font-size: 12px;padding-left: 20px;">
                 &nbsp;
