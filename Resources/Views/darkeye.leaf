@@ -99,7 +99,7 @@
             <td style="padding-bottom: 25px;font-size: 12px;padding-left: 20px;">
                 <a href="/darkeye/search?text=#(searchText)&more=#(wordLink.hash)">More ...</a>
             #else:
-            <td style="padding-bottom: 10px;font-size: 12px;padding-left: 20px;">
+            <td style="padding-bottom: 5px;font-size: 12px;padding-left: 20px;">
                 &nbsp;
             #endif
             </td>
