@@ -30,7 +30,7 @@
     <table width="100%">
     #for(wordLink in wordLinksModels):
         <tr>
-        <td style="font-size: 12px;padding-left: 20px;">
+        <td style="font-size: 10px;padding-left: 20px;">
             #(wordLink.url)
         </td>
         </tr>
@@ -55,7 +55,7 @@
             #if(wordLink.showAllChildren):
             #for(childWordLink in wordLink.allChildren):
                 <tr>
-                <td style="font-size: 12px;padding-left: 20px;">
+                <td style="font-size: 10px;padding-left: 20px;">
                     #(childWordLink.url)
                 </td>
                 </tr>
@@ -73,7 +73,7 @@
             #elseif(wordLink.topChildren):
             #for(childWordLink in wordLink.topChildren):
                 <tr>
-                <td style="font-size: 12px;padding-left: 20px;">
+                <td style="font-size: 10px;padding-left: 20px;">
                     #(childWordLink.url)
                 </td>
                 </tr>
