@@ -36,7 +36,12 @@
         </tr>
         <tr>
         <td style="font-size: 17px;padding-left: 20px;">
-            <a href="/darkeye/v/#(wordLink.hash)">#(wordLink.title)</a>
+            #if(isTorBrowser):
+            <a href="#(wordLink.url)">
+            #else:
+            <a href="/darkeye/v/#(wordLink.hash)">
+            #endif
+            #(wordLink.title)</a>
         </td>
         </tr>
         <tr>
@@ -61,7 +66,12 @@
                 </tr>
                 <tr>
                 <td style="font-size: 17px;padding-left: 20px;">
-                    <a href="/darkeye/v/#(childWordLink.hash)">#(childWordLink.title)</a>
+                    #if(isTorBrowser):
+                    <a href="#(childWordLink.url)">
+                    #else:
+                    <a href="/darkeye/v/#(childWordLink.hash)">
+                    #endif
+                    #(childWordLink.title)</a>
                 </td>
                 </tr>
                 <tr>
@@ -79,7 +89,12 @@
                 </tr>
                 <tr>
                 <td style="font-size: 17px;padding-left: 20px;">
-                    <a href="/darkeye/v/#(childWordLink.hash)">#(childWordLink.title)</a>
+                    #if(isTorBrowser):
+                    <a href="#(childWordLink.url)">
+                    #else:
+                    <a href="/darkeye/v/#(childWordLink.hash)">
+                    #endif
+                    #(childWordLink.title)</a>
                 </td>
                 </tr>
                 <tr>
