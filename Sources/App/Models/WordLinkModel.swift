@@ -27,6 +27,8 @@ struct ChildWordLinkModel: Codable {
 }
 
 struct WordLinkModel: Codable {
+    static let childCount = 2
+    
     var url: String
     var hash: String
     var title: String
@@ -52,10 +54,10 @@ struct WordLinkModel: Codable {
         var topChildren = allChildren
         var hasMoreChildren = false
         if let allChildren = allChildren {
-            if allChildren.count > 3 {
-                topChildren?.removeLast(allChildren.count - 3)
+            if allChildren.count > childCount {
+                topChildren?.removeLast(allChildren.count - childCount)
             }
-            hasMoreChildren = !showAllChildren && allChildren.count > 3
+            hasMoreChildren = !showAllChildren && allChildren.count > childCount
         }
         if let link = link, await !link.title().isEmpty {
             return await WordLinkModel(
