@@ -12,6 +12,7 @@ struct DarkeyeController: RouteCollection {
         routes.get("darkeye", "stop", use: stopHandler)
         routes.get("darkeye", "start", use: startHandler)
         routes.get("darkeye", "exit", use: exitHandler)
+        routes.get("darkeye", "exitWithError", use: exitWithErrorHandler)
     }
     
     // MARK: - route Handlers
@@ -53,5 +54,10 @@ struct DarkeyeController: RouteCollection {
     func exitHandler(_ req: Request) async throws -> View {
         try await appController.exitTheApp()
         return try await req.view.render("exit")
+    }
+    
+    func exitWithErrorHandler(_ req: Request) async throws -> View {
+        try await appController.exitTheAppWithError()
+        return try await req.view.render("exitWithError")
     }
 }
