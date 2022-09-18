@@ -29,7 +29,7 @@ struct DarkeyeController: RouteCollection {
         let searchText = req.query[String.self, at: "text"] ?? ""
         print("searchText: \(searchText)")
         let moreHash = req.query[String.self, at: "more"] ?? ""
-        print("moreHash: \(moreHash)")
+        //print("moreHash: \(moreHash)")
         let wordLinks = await WordLink.wordLinks(withSearchText: searchText, count: DarkeyeModel.linksCount)
         let darkEyeModel = await DarkeyeModel.modelWith(
             req: req,

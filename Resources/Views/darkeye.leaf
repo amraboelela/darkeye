@@ -61,7 +61,7 @@
                 </tr>
                 <tr>
                 <td style="font-size: 17px;padding-left: 20px;">
-                    <a href="/darkeye/v/#(wordLink.hash)">#(childWordLink.title)</a>
+                    <a href="/darkeye/v/#(childWordLink.hash)">#(childWordLink.title)</a>
                 </td>
                 </tr>
                 <tr>
@@ -79,7 +79,7 @@
                 </tr>
                 <tr>
                 <td style="font-size: 17px;padding-left: 20px;">
-                    <a href="/darkeye/v/#(wordLink.hash)">#(childWordLink.title)</a>
+                    <a href="/darkeye/v/#(childWordLink.hash)">#(childWordLink.title)</a>
                 </td>
                 </tr>
                 <tr>
