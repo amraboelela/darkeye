@@ -41,9 +41,9 @@
         </tr>
         <tr>
         #if(wordLink.allChildren):
-        <td style="padding-bottom: 15px;padding-left: 20px;padding-right: 20px;">
+        <td style="padding-bottom: 10px;padding-left: 20px;padding-right: 20px;">
         #else:
-        <td style="padding-bottom: 25px;padding-left: 20px;padding-right: 20px;">
+        <td style="padding-bottom: 20px;padding-left: 20px;padding-right: 20px;">
         #endif
             #unsafeHTML(wordLink.html)
         </td>
@@ -65,7 +65,7 @@
                 </td>
                 </tr>
                 <tr>
-                <td style="padding-bottom: 15px;padding-left: 20px;padding-right: 20px;">
+                <td style="padding-bottom: 10px;padding-left: 20px;padding-right: 20px;">
                     #unsafeHTML(childWordLink.html)
                 </td>
                 </tr>
@@ -83,7 +83,7 @@
                 </td>
                 </tr>
                 <tr>
-                <td style="padding-bottom: 15px;padding-left: 20px;padding-right: 20px;">
+                <td style="padding-bottom: 10px;padding-left: 20px;padding-right: 20px;">
                     #unsafeHTML(childWordLink.html)
                 </td>
                 </tr>
@@ -96,7 +96,7 @@
             <table width="100%">
             <tr>
             #if(wordLink.hasMoreChildren):
-            <td style="padding-bottom: 25px;font-size: 12px;padding-left: 20px;">
+            <td style="padding-bottom: 20px;font-size: 12px;padding-left: 20px;">
                 <a href="/darkeye/search?text=#(searchText)&more=#(wordLink.hash)">More ...</a>
             #else:
             <td style="padding-bottom: 5px;font-size: 12px;padding-left: 20px;">
