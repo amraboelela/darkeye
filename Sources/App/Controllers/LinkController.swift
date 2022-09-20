@@ -14,12 +14,22 @@ struct LinkController: RouteCollection {
     
     // MARK: - route Handlers
     
-    func linkHandler(_ req: Request) async throws -> View {
+    func linkHandler(_ req: Request) async throws -> Response {
         let hash = req.parameters.get("hash") ?? ""
-        if let link = await HashLink.linkWith(hash: hash) {
-            return try await req.view.render("link", LinkModel.from(link: link))
+        var view: View
+        if var link = await HashLink.linkWith(hash: hash) {
+            link.numberOfVisits += 1
+            link.lastVisitTime = Date.secondsSinceReferenceDate
+            await link.save()
+            if req.fromTorBrowser {
+                let response = req.redirect(to: link.url)
+                return response
+            }
+            view = try await req.view.render("link", LinkModel.from(link: link))
+        } else {
+            view = try await req.view.render("link")
         }
-        return try await req.view.render("link")
+        return try await view.encodeResponse(for: req)
     }
     
     func blockLink(_ req: Request) async throws -> View {
