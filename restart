@@ -2,15 +2,13 @@
 
 source /home/amr/.bashrc
 
-echo "Restarting machine if needed" > $1 
-#2>&1
+echo "Restarting machine if needed" > $1 2>&1
 
 WEBSERVER_PATH=$(dirname $0)
 #yesterday=$(date -d "yesterday" "+%u")
 
 if cat $WEBSERVER_PATH/log/log.txt | grep -q "Bad file descriptor"; then
-    echo "Bad file descriptor, restoring machine." >> $1 
-    #2>&1
+    echo "Bad file descriptor, restoring machine." >> $1 2>&1
     sudo reboot
 fi
 
