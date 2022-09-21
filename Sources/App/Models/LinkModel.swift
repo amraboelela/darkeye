@@ -12,7 +12,7 @@ struct LinkModel: Codable {
     static func from(link: Link) async -> LinkModel {
         var theLink = link
         await theLink.saveChildrenIfNeeded()
-        var linkHtml = await theLink.html() ?? ""
+        var linkHtml = (try? await theLink.html()) ?? ""
         for (rawURL, refinedURL) in await theLink.urls() {
             //print("rawURL: \(rawURL)")
             let hash = refinedURL.hashBase32(numberOfDigits: 12)
