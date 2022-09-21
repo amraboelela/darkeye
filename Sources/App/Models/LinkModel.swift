@@ -18,7 +18,7 @@ struct LinkModel: Codable {
             let hash = refinedURL.hashBase32(numberOfDigits: 12)
             linkHtml = linkHtml.replacingOccurrences(of: "href=\"" + rawURL + "\"", with: "href=\"/darkeye/v/" + hash + "\"")
         }
-        return await LinkModel(url: theLink.url, title: theLink.title(), html: linkHtml, numberOfReports: theLink.site()?.numberOfReports ?? 0, allowed: theLink.site()?.allowed ?? true)
+        return await LinkModel(url: theLink.url, title: theLink.title ?? theLink.url, html: linkHtml, numberOfReports: theLink.site()?.numberOfReports ?? 0, allowed: theLink.site()?.allowed ?? true)
     }
     
     static func modelsWith(links: [Link], loggedInUser: User?) async -> [LinkModel] {

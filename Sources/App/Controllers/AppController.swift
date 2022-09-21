@@ -8,7 +8,7 @@ class AppController: CrawlerDelegate {
     var withError = false
     
     func crawlerStopped() {
-        var errorCode = withError ? 1 : 0
+        let errorCode = withError ? 1 : 0
         NSLog("exit(\(errorCode)")
         exit(Int32(errorCode))
     }
