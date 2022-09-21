@@ -24,7 +24,7 @@ cp ${WEBSERVER_PATH}/log/log.txt ${WEBSERVER_PATH}/log/log$(date "+%u").txt
 #./restore ${WEBSERVER_PATH}/log/log-r.txt
 ./restart ${WEBSERVER_PATH}/log/log-restart.txt
 
-/opt/swift/usr/bin/swift run Run serve --hostname 0.0.0.0 --port 9001 > ${WEBSERVER_PATH}/log/log.txt 2>&1 &
+/opt/swift/usr/bin/swift run Run serve --hostname 0.0.0.0 --port 9001 > ${WEBSERVER_PATH}/log/log.txt 2>&1 || ./restart &
 
 disown
 sleep 3
