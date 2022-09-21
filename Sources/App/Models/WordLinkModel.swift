@@ -11,8 +11,8 @@ struct ChildWordLinkModel: Codable {
     static func from(childWordLink: ChildWordLink, searchText: String) async -> ChildWordLinkModel {
         let link: Link? = await database.value(forKey: Link.prefix + childWordLink.url)
         let html = childWordLink.text.htmlWith(searchText: searchText)
-        if let link = link, await !link.title().isEmpty {
-            return await ChildWordLinkModel(url: link.url, hash: link.hash, title: link.title(), html: html)
+        if let link = link, let title = link.title, !title.isEmpty {
+            return ChildWordLinkModel(url: link.url, hash: link.hash, title: title, html: html)
         } else {
             return ChildWordLinkModel(url: "", hash: childWordLink.url.hashBase32(numberOfDigits: 12), title: link?.url ?? "No Title", html: html)
         }
@@ -59,11 +59,11 @@ struct WordLinkModel: Codable {
             }
             hasMoreChildren = !showAllChildren && allChildren.count > childCount
         }
-        if let link = link, await !link.title().isEmpty {
-            return await WordLinkModel(
+        if let link = link, let title = link.title, !title.isEmpty {
+            return WordLinkModel(
                 url: link.url,
                 hash: hash,
-                title: link.title(),
+                title: title,
                 html: html,
                 allChildren: allChildren,
                 showAllChildren: showAllChildren,
