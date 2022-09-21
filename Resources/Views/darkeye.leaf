@@ -18,11 +18,7 @@
             </form>
         </td>
         <td align="center">
-        #if(userModel):
-            #(userModel.username) | <a href="/logout">Logout</a>
-        #else:
-            <a href="/login">Login</a>
-        #endif
+            <a href="mailto:bcoffee746@gmail.com">contact us</a>
         </td>
         </tr>
     </table>
