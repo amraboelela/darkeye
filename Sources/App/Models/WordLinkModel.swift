@@ -59,29 +59,34 @@ struct WordLinkModel: Codable {
             }
             hasMoreChildren = !showAllChildren && allChildren.count > childCount
         }
-        if let link = link, let title = link.title, !title.isEmpty {
-            return WordLinkModel(
-                url: link.url,
-                hash: hash,
-                title: title,
-                html: html,
-                allChildren: allChildren,
-                showAllChildren: showAllChildren,
-                topChildren: topChildren,
-                hasMoreChildren: hasMoreChildren
-            )
-        } else {
-            return WordLinkModel(
-                url: "",
-                hash: hash,
-                title: link?.url ?? "No Title",
-                html: html,
-                allChildren: allChildren,
-                showAllChildren: showAllChildren,
-                topChildren: topChildren,
-                hasMoreChildren: hasMoreChildren
-            )
+        if var link = link {
+            if link.title == nil {
+                await link.updateTitle()
+                await link.save()
+            }
+            if let title = link.title, !title.isEmpty {
+                return WordLinkModel(
+                    url: link.url,
+                    hash: hash,
+                    title: title,
+                    html: html,
+                    allChildren: allChildren,
+                    showAllChildren: showAllChildren,
+                    topChildren: topChildren,
+                    hasMoreChildren: hasMoreChildren
+                )
+            }
         }
+        return WordLinkModel(
+            url: "",
+            hash: hash,
+            title: link?.url ?? "No Title",
+            html: html,
+            allChildren: allChildren,
+            showAllChildren: showAllChildren,
+            topChildren: topChildren,
+            hasMoreChildren: hasMoreChildren
+        )
     }
     
     static func modelsWith(wordLinks: [WordLink], searchText: String, moreHash: String?) async -> [WordLinkModel] {
