@@ -6,7 +6,7 @@ import VaporCommon
 
 struct DarkeyeModel: Codable {
     static let title = "Darkeye not evil search engine for DarkNet (the Dark Web)"
-    static let linksCount = 300
+    static let linksCount = 200
     
     var loggedInUser: User?
     var title: String
