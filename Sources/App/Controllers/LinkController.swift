@@ -18,6 +18,7 @@ struct LinkController: RouteCollection {
         let hash = req.parameters.get("hash") ?? ""
         var view: View
         if var link = await HashLink.linkWith(hash: hash) {
+            NSLog("linkHandler viewing url: \(link.url)")
             link.numberOfVisits += 1
             link.lastVisitTime = Date.secondsSinceReferenceDate
             await link.save()
@@ -27,6 +28,7 @@ struct LinkController: RouteCollection {
             }
             view = try await req.view.render("link", LinkModel.from(link: link))
         } else {
+            NSLog("linkHandler couldn't get link for hash: \(hash)")
             view = try await req.view.render("link")
         }
         return try await view.encodeResponse(for: req)
