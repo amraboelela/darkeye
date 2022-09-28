@@ -18,10 +18,7 @@ struct LinkController: RouteCollection {
         let hash = req.parameters.get("hash") ?? ""
         var view: View
         if var link = await HashLink.linkWith(hash: hash) {
-            NSLog("linkHandler viewing url: \(link.url)")
-            link.numberOfVisits += 1
-            link.lastVisitTime = Date.secondsSinceReferenceDate
-            await link.save()
+            await link.viewing()
             if req.fromTorBrowser {
                 let response = req.redirect(to: link.url)
                 return response
