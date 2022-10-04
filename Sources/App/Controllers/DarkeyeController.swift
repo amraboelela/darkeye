@@ -30,7 +30,7 @@ struct DarkeyeController: RouteCollection {
         //print("searchText: \(searchText)")
         let moreHash = req.query[String.self, at: "more"] ?? ""
         NSLog("fromTorBrowser: \(req.fromTorBrowser)")
-        await Crawler.shared().stop()
+        //await Crawler.shared().stop()
         let wordLinks = await WordLink.wordLinks(withSearchText: searchText, count: DarkeyeModel.linksCount)
         let darkEyeModel = await DarkeyeModel.modelWith(
             req: req,
@@ -39,7 +39,7 @@ struct DarkeyeController: RouteCollection {
             wordLinks: wordLinks,
             moreHash: moreHash
         )
-        await Crawler.shared().start()
+        //await Crawler.shared().start()
         return try await req.view.render("darkeye", darkEyeModel)
     }
     
