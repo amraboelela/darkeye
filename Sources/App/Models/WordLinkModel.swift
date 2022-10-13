@@ -4,6 +4,7 @@ import DarkeyeCore
 
 struct ChildWordLinkModel: Codable {
     var url: String
+    var date: String
     var hash: String
     var title: String
     var html: String
@@ -12,9 +13,21 @@ struct ChildWordLinkModel: Codable {
         let link: Link? = await database.value(forKey: Link.prefix + childWordLink.url)
         let html = childWordLink.text.htmlWith(searchText: searchText)
         if let link = link, let title = link.title, !title.isEmpty {
-            return ChildWordLinkModel(url: link.url, hash: link.hash, title: title, html: html)
+            return ChildWordLinkModel(
+                url: link.url,
+                date: link.date,
+                hash: link.hash,
+                title: title,
+                html: html
+            )
         } else {
-            return ChildWordLinkModel(url: "", hash: childWordLink.url.hashBase32(numberOfDigits: 12), title: link?.url ?? "No Title", html: html)
+            return ChildWordLinkModel(
+                url: "",
+                date: "",
+                hash: childWordLink.url.hashBase32(numberOfDigits: 12),
+                title: link?.url ?? "No Title",
+                html: html
+            )
         }
     }
     
@@ -30,13 +43,14 @@ struct WordLinkModel: Codable {
     static let childCount = 2
     
     var url: String
+    var date: String
     var hash: String
     var title: String
     var html: String
-    var allChildren: [ChildWordLinkModel]?
-    var showAllChildren = false
     var topChildren: [ChildWordLinkModel]?
     var hasMoreChildren = false
+    var allChildren: [ChildWordLinkModel]?
+    var showAllChildren = false
     
     static func from(
         wordLink: WordLink,
@@ -67,25 +81,27 @@ struct WordLinkModel: Codable {
             if let title = link.title, !title.isEmpty {
                 return WordLinkModel(
                     url: link.url,
+                    date: link.date,
                     hash: hash,
                     title: title,
                     html: html,
-                    allChildren: allChildren,
-                    showAllChildren: showAllChildren,
                     topChildren: topChildren,
-                    hasMoreChildren: hasMoreChildren
+                    hasMoreChildren: hasMoreChildren,
+                    allChildren: allChildren,
+                    showAllChildren: showAllChildren
                 )
             }
         }
         return WordLinkModel(
             url: "",
+            date: "",
             hash: hash,
             title: link?.url ?? "No Title",
             html: html,
-            allChildren: allChildren,
-            showAllChildren: showAllChildren,
             topChildren: topChildren,
-            hasMoreChildren: hasMoreChildren
+            hasMoreChildren: hasMoreChildren,
+            allChildren: allChildren,
+            showAllChildren: showAllChildren
         )
     }
     
