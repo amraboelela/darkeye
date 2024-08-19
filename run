@@ -21,13 +21,17 @@ mkdir -p ${WEBSERVER_PATH}/log
 cp ${WEBSERVER_PATH}/log/log.txt ${WEBSERVER_PATH}/log/log$(date "+%u").txt
 #cp ${WEBSERVER_PATH}/python/log.txt ${WEBSERVER_PATH}/python/log$(date "+%u").txt
 
-zipFile=darkeye${day}
-zip -r ${zipFile}.zip Library/Database && scp ${zipFile}.zip amr@ai:backup && rm ${zipFile}.zip
+if [ "$1" == "backup" ]; then
+    zipFile=darkeye${day}
+    zip -r ${zipFile}.zip Library/Database && scp ${zipFile}.zip amr@ai:backup && rm ${zipFile}.zip
+fi
 
 #./restore ${WEBSERVER_PATH}/log/log-r.txt
-./restart ${WEBSERVER_PATH}/log/log-restart.txt
+#./restart ${WEBSERVER_PATH}/log/log-restart.txt
 
-/opt/swift/usr/bin/swift run Run serve --hostname 0.0.0.0 --port 9001 > ${WEBSERVER_PATH}/log/log.txt 2>&1 || ./restart &
+/opt/swift/usr/bin/swift run Run serve --hostname 0.0.0.0 --port 9001 > ${WEBSERVER_PATH}/log/log.txt 2>&1 i
+
+#|| ./restart &
 
 disown
 sleep 3
