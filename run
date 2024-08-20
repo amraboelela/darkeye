@@ -27,8 +27,8 @@ rm ${WEBSERVER_PATH}/log/log.txt
 
 if [ "$1" == "backup" ]; then
     zipFile=darkeye${day}
-    zip -r ${zipFile}.zip Library/Database && scp ${zipFile}.zip amr@ai:backup
-        cp ${zipFile}.zip /home/amr/backup && rm ${zipFile}.zip
+    zip -r ${zipFile}.zip Library/Database && scp ${zipFile}.zip amr@bilal:backup
+    cp ${zipFile}.zip /home/amr/backup && rm ${zipFile}.zip
 fi
 
 #./restore ${WEBSERVER_PATH}/log/log-r.txt
