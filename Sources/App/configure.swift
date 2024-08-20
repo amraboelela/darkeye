@@ -21,10 +21,10 @@ public func configure(_ app: Application) throws {
     database = LevelDB(parentPath: app.directory.workingDirectory + "Library", name: "Database")
     Global.workingDirectory = app.directory.workingDirectory
 
-    /*Task(priority: .background) {
+    Task(priority: .background) {
         let crawler = await Crawler.shared()
         await crawler.start()
-    }*/
+    }
     // register routes
     try routes(app)
 }
