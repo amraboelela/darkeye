@@ -18,7 +18,7 @@ public func configure(_ app: Application) throws {
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
     app.views.use(.leaf)
     
-    //database = LevelDB(parentPath: app.directory.workingDirectory + "Library", name: "Database")
+    database = LevelDB(parentPath: app.directory.workingDirectory + "Library", name: "Database")
     Global.workingDirectory = app.directory.workingDirectory
 
     /*Task(priority: .background) {
